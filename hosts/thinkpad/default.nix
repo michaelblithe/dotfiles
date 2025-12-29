@@ -8,6 +8,7 @@
     
   ];
         virtualisation.vmVariant = {
+          home-manager.users.alex.home.stateVersion = "25.11";
           virtualisation = {
             memorySize = 8192; # in MB
             cores = 8;
