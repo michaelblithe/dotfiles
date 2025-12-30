@@ -7,6 +7,8 @@
     ./disko.nix
     
   ];
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   home-manager.users.alex.home.stateVersion = "25.11";
         virtualisation.vmVariant = {
           virtualisation = {
