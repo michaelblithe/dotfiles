@@ -43,6 +43,7 @@
     gh
     nixfmt
     nil
+    claude-code
   ];
 
 }

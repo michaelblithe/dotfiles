@@ -2,6 +2,8 @@
   config,
   inputs,
   pkgs,
+  lib,
+  hostname ? "",
   ...
 }:
 
@@ -12,6 +14,11 @@
     portalPackage = null;  
     settings = {
       "$mod" = "SUPER";
+      
+      monitor = lib.mkIf (hostname == "framework") [
+        ",preferred,auto,1.33"
+      ];
+      
       bind = [
         "$mod, RETURN, exec, kitty"
         "$mod, D, exec, rofi -show drun"
@@ -39,14 +46,6 @@
         "$mod SHIFT, 6, movetoworkspace, 6"
         "$mod SHIFT, 7, movetoworkspace, 7"
         "$mod SHIFT, 8, movetoworkspace, 8"
-      ];
-
-      exec-once = [
-        "waybar &"
-        "nm-applet &"
-        "dunst &"
-        "hyprpaper &"
-        "hypridle &"
       ];
     };    
   };

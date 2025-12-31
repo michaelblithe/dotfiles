@@ -10,5 +10,6 @@
     ../kitty
     ../hyprland
     ../fonts
+    ../rofi
   ];
 }
