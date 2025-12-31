@@ -1,10 +1,13 @@
-
 { config, pkgs, ... }:
 
 {
   programs.git = {
     enable = true;
-    userEmail = "michaelrblithe@gmail.com";
-    userName = "Alex Blithe";
+    settings = {
+      user = {
+        email = "michaelrblithe@gmail.com";
+        name = "Alex Blithe";
+      };
+    };
   };
 }

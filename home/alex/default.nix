@@ -7,5 +7,8 @@
     ../zsh
     ../firefox
     ../git
+    ../kitty
+    ../hyprland
+    ../fonts
   ];
 }
