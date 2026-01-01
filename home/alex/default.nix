@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ 
+  imports = [
     ../vscode
     ../gnome
     ../zsh
@@ -12,5 +12,6 @@
     ../fonts
     ../rofi
     ../waybar
+    ../azahar
   ];
 }
