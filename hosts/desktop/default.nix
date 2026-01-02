@@ -15,9 +15,13 @@
   home-manager.users.alex.home.stateVersion = "25.11";
   system.stateVersion = "25.11";
 
+  # Make GPU have enough VRAM
   boot.kernelParams = [
     "amd_iommu=off"
     "amdgpu.gttsize=126976"
     "ttm.pages_limit=32505856"
   ];
+
+  # Set CPU governor to performance
+  powerManagement.cpuFreqGovernor = "performance";
 }
