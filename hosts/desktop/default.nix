@@ -1,4 +1,4 @@
-{ pkgs, lib, ...}:
+{ pkgs, ...}:
 
 {
   networking.hostName = "house-of-wind";
@@ -14,4 +14,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   home-manager.users.alex.home.stateVersion = "25.11";
   system.stateVersion = "25.11";
+
+  boot.kernelParams = [
+    "amd_iommu=off"
+    "amdgpu.gttsize=126976"
+    "ttm.pages_limit=32505856"
+  ];
 }

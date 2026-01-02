@@ -23,6 +23,8 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
+  services.hardware.bolt.enable = true;
+
   programs.zsh.enable = true;
 
   programs.hyprland = {
