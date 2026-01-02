@@ -23,6 +23,7 @@
         "vim.handleKeys" = {
           "<C-p>" = false;
         };
+        "nix.enableLanguageServer" = true;
         "workbench.colorTheme" = "Pink Cat Boo";
         "workbench.iconTheme" = "catppuccin-mocha";
         "redhat.telemetry.enabled" = false;
