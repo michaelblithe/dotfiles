@@ -11,6 +11,8 @@
   # Needed for proton VPN to work properly
   networking.firewall.checkReversePath = false;
 
+  sops.age.keyFile = "/home/alex/.config/sops/age/keys.txt";
+
   users.users.alex = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager"];
@@ -35,6 +37,7 @@
 
   imports = [
     ../../modules/firejail
+    ../../modules/wireguard
   ];
 
   environment.systemPackages = with pkgs; [
@@ -55,6 +58,8 @@
     claude-code
     protonvpn-gui
     wireguard-tools
+    age
+    sops
   ];
 
 }
