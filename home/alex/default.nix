@@ -13,5 +13,6 @@
     ../rofi
     ../waybar
     ../azahar
+    ../syncthing
   ];
 }

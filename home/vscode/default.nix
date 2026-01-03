@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = [ pkgs.nixpkgs-fmt ];
+
   programs.vscode = {
     enable = true;
     profiles.default = {
@@ -24,6 +26,14 @@
           "<C-p>" = false;
         };
         "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nil";
+        "nix.serverSettings" = {
+          "nil" = {
+            "formatting" = {
+              "command" = [ "nixpkgs-fmt" ];
+            };
+          };
+        };
         "workbench.colorTheme" = "Pink Cat Boo";
         "workbench.iconTheme" = "catppuccin-mocha";
         "redhat.telemetry.enabled" = false;
