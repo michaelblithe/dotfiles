@@ -8,6 +8,7 @@
         email = "michaelrblithe@gmail.com";
         name = "Alex Blithe";
       };
+      pull.rebase = false;
     };
   };
 }
