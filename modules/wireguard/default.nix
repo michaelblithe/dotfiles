@@ -16,10 +16,12 @@
 
     peers = [
       {
-        publicKey = "eAXSF+LlakN4YOXCSTO/C+FHrwxISh/ekH+BuSjLZgY=";
+        # publicKey = "eAXSF+LlakN4YOXCSTO/C+FHrwxISh/ekH+BuSjLZgY=";
+        # allowedIPs = [ "0.0.0.0/0" "::/0" ];
+        # endpoint = "151.243.141.6:51820";
+        publicKey = "umCaW98SBPbNjApBKCo0ReYhT2AJ0QfV/ZlyWnWmVUk=";
         allowedIPs = [ "0.0.0.0/0" "::/0" ];
-        endpoint = "151.243.141.6:51820";
-
+        endpoint = "149.102.226.225:51820";
         persistentKeepalive = 25;
       }
     ];

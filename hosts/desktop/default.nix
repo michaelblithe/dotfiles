@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, config, ...}:
 
 {
   networking.hostName = "house-of-wind";
@@ -24,4 +24,29 @@
 
   # Set CPU governor to performance
   powerManagement.cpuFreqGovernor = "performance";
+
+  # NVIDIA proprietary drivers
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.graphics.enable = true;
+
+  hardware.nvidia = {
+    # Modesetting is required
+    modesetting.enable = true;
+
+    # Use the proprietary NVIDIA drivers
+    open = false;
+
+    # Enable the NVIDIA settings menu
+    nvidiaSettings = true;
+
+    # Select the appropriate driver version
+    # Use "production" for stable, or specify a version
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
+  # CUDA support
+  environment.systemPackages = with pkgs; [
+    cudaPackages.cudatoolkit
+    cudaPackages.cudnn
+  ];
 }
