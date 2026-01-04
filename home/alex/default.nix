@@ -14,5 +14,6 @@
     ../waybar
     ../emu
     ../syncthing
+    ../chrome
   ];
 }

@@ -60,6 +60,7 @@
     wireguard-tools
     age
     sops
+    clamav
   ];
 
 }
