@@ -12,7 +12,7 @@
     ../fonts
     ../rofi
     ../waybar
-    ../azahar
+    ../emu
     ../syncthing
   ];
 }
