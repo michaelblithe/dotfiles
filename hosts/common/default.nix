@@ -61,6 +61,12 @@
     age
     sops
     clamav
+    impala
+    bluetui
+    fastfetch
+    btop
+    lazydocker
+    opencode
   ];
 
 }
