@@ -26,18 +26,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    llama-cpp = {
+      url = "github:ggml-org/llama.cpp";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
-    inputs@{ self
-    , nixpkgs
-    , home-manager
-    , disko
-    , nix-vscode-extensions
-    , nur
-    , sops-nix
-    , ...
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      disko,
+      nix-vscode-extensions,
+      nur,
+      sops-nix,
+      llama-cpp,
+      ...
     }:
+
 
     let
       configuration =
@@ -111,6 +119,9 @@
               home-manager.extraSpecialArgs = {
                 hostname = "house-of-wind";
               };
+            }
+            {
+              nixpkgs.overlays = [ (import ./overlays/llama.cpp.nix llama-cpp) ];
             }
             ./hosts/desktop
           ];
