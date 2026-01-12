@@ -27,23 +27,21 @@
     };
 
     llama-cpp = {
-      url = "github:ggml-org/llama.cpp";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:ggml-org/llama.cpp/0c3b7a9efebc73d206421c99b7eb6b6716231322";
     };
 
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      home-manager,
-      disko,
-      nix-vscode-extensions,
-      nur,
-      sops-nix,
-      llama-cpp,
-      ...
+    inputs@{ self
+    , nixpkgs
+    , home-manager
+    , disko
+    , nix-vscode-extensions
+    , nur
+    , sops-nix
+    , llama-cpp
+    , ...
     }:
 
 
@@ -72,6 +70,9 @@
             }
             home-manager.nixosModules.home-manager
             {
+              home-manager.sharedModules = [
+                sops-nix.homeManagerModules.sops
+              ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.alex = import ./home/alex;
@@ -113,6 +114,9 @@
             configuration
             home-manager.nixosModules.home-manager
             {
+              home-manager.sharedModules = [
+                sops-nix.homeManagerModules.sops
+              ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.alex = import ./home/alex;
@@ -121,6 +125,7 @@
               };
             }
             {
+              nixpkgs.config.allowUnfree = true;
               nixpkgs.overlays = [ (import ./overlays/llama.cpp.nix llama-cpp) ];
             }
             ./hosts/desktop
@@ -135,6 +140,9 @@
             configuration
             home-manager.nixosModules.home-manager
             {
+              home-manager.sharedModules = [
+                sops-nix.homeManagerModules.sops
+              ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.alex = import ./home/alex;
