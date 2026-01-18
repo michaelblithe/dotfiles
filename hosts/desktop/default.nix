@@ -28,6 +28,7 @@
   # NVIDIA proprietary drivers
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics.enable = true;
+  virtualisation.podman.enableNvidia = true;
 
   hardware.nvidia = {
     # Modesetting is required

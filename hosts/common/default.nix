@@ -8,6 +8,7 @@
     initialPassword = "changeme";
   };
 
+
   # Needed for proton VPN to work properly
   networking.firewall.checkReversePath = false;
 
@@ -15,7 +16,7 @@
 
   users.users.alex = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager"];
+    extraGroups = [ "wheel" "networkmanager" "podman" "docker" ];
     shell = pkgs.zsh;
     # Use an initial plaintext password for first boot; change it after logging in.
     initialPassword = "changeme";
@@ -34,10 +35,22 @@
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
+  virtualisation.podman.enable = true;
+  # virtualisation.podman.dockerCompat = true;
+  virtualisation.containers.registries.search = [ "docker.io" ];
+  environment.sessionVariables = {
+    # Force docker-compose to use the CLI build flow (invoking podman)
+    # instead of trying to talk to a Docker daemon API directly.
+    COMPOSE_DOCKER_CLI_BUILD = "1";
+
+    # Prevent the "classic builder" error by signaling BuildKit support
+    DOCKER_BUILDKIT = "1";
+  };
+  virtualisation.docker.enable = true;
 
   imports = [
     ../../modules/firejail
-    # ../../modules/wireguard
+    ../../modules/wireguard
   ];
 
   environment.systemPackages = with pkgs; [
@@ -49,6 +62,8 @@
     neofetch
     htop
     podman
+    podman-compose
+    docker-compose
     vscode
     neovim
     gh
