@@ -1,0 +1,20 @@
+{ config, pkgs, ... }:
+
+{
+  imports = [
+    ../vscode
+    ../gnome
+    ../zsh
+    ../firefox
+    ../git
+    ../kitty
+    ../hyprland
+    ../fonts
+    ../rofi
+    ../waybar
+    ../emu
+    ../syncthing
+    ../chrome
+    ../direnv
+  ];
+}
