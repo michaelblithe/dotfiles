@@ -11,6 +11,12 @@
   home.packages = with pkgs; [
     brightnessctl
     pamixer
+    grimblast
+    hyprpicker
+    wlsunset
+    wl-clipboard
+    cliphist
+    lxqt.lxqt-policykit
   ];
 
   wayland.windowManager.hyprland = {
@@ -20,15 +26,98 @@
     settings = {
       "$mod" = "SUPER";
 
+      # Animations for smooth, responsive feel
+      animations = {
+        enabled = true;
+        bezier = [
+          "smooth, 0.25, 0.1, 0.25, 1"
+          "smoothOut, 0.36, 0, 0.66, -0.56"
+          "smoothIn, 0.25, 1, 0.5, 1"
+        ];
+        animation = [
+          "windows, 1, 4, smooth, slide"
+          "windowsOut, 1, 4, smoothOut, slide"
+          "windowsMove, 1, 4, smooth"
+          "fade, 1, 4, smooth"
+          "workspaces, 1, 4, smooth, slide"
+          "border, 1, 6, smooth"
+        ];
+      };
+
+      # Visual polish - gaps, borders, rounding
+      general = {
+        gaps_in = 4;
+        gaps_out = 8;
+        border_size = 2;
+        "col.active_border" = "rgba(ffffffee)";
+        "col.inactive_border" = "rgba(59595966)";
+        layout = "dwindle";
+      };
+
+      # Window decorations - blur, shadows, rounding
+      decoration = {
+        rounding = 8;
+        blur = {
+          enabled = true;
+          size = 8;
+          passes = 2;
+          new_optimizations = true;
+          xray = false;
+        };
+        shadow = {
+          enabled = true;
+          range = 12;
+          render_power = 3;
+          color = "rgba(00000055)";
+        };
+      };
+
+      # Misc quality-of-life
+      misc = {
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        animate_manual_resizes = true;
+        animate_mouse_windowdragging = true;
+        vfr = true;
+      };
+
+      # Dwindle layout settings
+      dwindle = {
+        pseudotile = true;
+        preserve_split = true;
+      };
+
       monitor = lib.mkIf (hostname == "framework") [
         ",preferred,auto,1.33"
+        "eDP-1,2256x1504@60,0x0,1.33"
       ];
 
       exec-once = [
         "waybar"
         "hypridle"
         "protonvpn-gui"
+        # Clipboard manager
+        "wl-paste --type text --watch cliphist store"
+        "wl-paste --type image --watch cliphist store"
+        # Polkit authentication agent
+        "lxqt-policykit-agent"
+      ] ++ lib.optionals (hostname == "framework") [
+        "wlsunset -l 40.7 -L -74.0"
       ];
+
+      input = lib.mkIf (hostname == "framework") {
+        touchpad = {
+          natural_scroll = false;
+          disable_while_typing = true;
+          clickfinger_behavior = true;
+          tap-to-click = true;
+          drag_lock = true;
+        };
+
+        kb_options = "caps:escape";
+        repeat_rate = 50;
+        repeat_delay = 250;
+      };
 
       bind = [
         "$mod, RETURN, exec, kitty"
@@ -68,7 +157,16 @@
         ",XF86AudioLowerVolume, exec, pamixer --decrease 5"
         ",XF86AudioMute, exec, pamixer --toggle-mute"
         # Lock screen
-        "$mod, L, exec, hyprlock"
+        "$mod CTRL, L, exec, hyprlock"
+        # Power management
+        ",XF86PowerOff, exec, systemctl suspend"
+        "$mod SHIFT, L, exec, systemctl suspend"
+        # Screenshot with grimblast
+        "$mod SHIFT, S, exec, grimblast copy area"
+        # Color picker
+        "$mod, P, exec, hyprpicker -a"
+        # Clipboard history
+        "$mod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
       ];
     };
   };
@@ -118,6 +216,22 @@
       };
     };
   };
+
+  # Notification daemon
+  services.mako = {
+    enable = true;
+    defaultTimeout = 5000;
+    borderRadius = 8;
+    borderSize = 2;
+    padding = "12";
+    margin = "12";
+    backgroundColor = "#191919ee";
+    textColor = "#ffffff";
+    borderColor = "#ffffff33";
+    layer = "overlay";
+    font = "JetBrainsMono 11";
+  };
+
   services.hypridle = {
     enable = true;
     settings = {

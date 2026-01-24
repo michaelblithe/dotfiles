@@ -1,5 +1,12 @@
 { pkgs, inputs, ...}:
 
+let
+  unstable = import inputs.nixpkgs-unstable {
+    system = pkgs.system;
+    config.allowUnfree = true;
+  };
+in
+
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   time.timeZone = "America/New_York";
@@ -53,7 +60,7 @@
     ../../modules/wireguard
   ];
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     vim
     git
     wget
@@ -70,7 +77,6 @@
     nixfmt
     nil
     spotify
-    claude-code
     protonvpn-gui
     wireguard-tools
     age
@@ -82,6 +88,11 @@
     btop
     lazydocker
     opencode
+    lftp
+    unzip
+    python3
+  ]) ++ [
+    unstable.claude-code
   ];
 
 }
