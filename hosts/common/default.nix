@@ -91,6 +91,7 @@ in
     lftp
     unzip
     python3
+    lmstudio
   ]) ++ [
     unstable.claude-code
   ];

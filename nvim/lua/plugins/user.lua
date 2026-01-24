@@ -32,6 +32,20 @@
 -- }
 
 return {
+  -- Disable Mason auto-install since Nix provides our tools
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {},
+    },
+  },
+  -- Override LazyVim's default colorscheme
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+    },
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",

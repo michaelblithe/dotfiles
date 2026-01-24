@@ -25,11 +25,18 @@
       black
       isort
       prettier
+      sqlfluff
+      ruff
       
       # Tools for telescope and other plugins
       ripgrep
       fd
       git
+
+      # Mason dependencies
+      nodejs
+      python3
+      unzip
       
       # Clipboard support
       wl-clipboard
