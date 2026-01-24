@@ -87,10 +87,16 @@
         preserve_split = true;
       };
 
-      monitor = lib.mkIf (hostname == "framework") [
-        ",preferred,auto,1.33"
-        "eDP-1,2256x1504@60,0x0,1.33"
-      ];
+      monitor =
+        if hostname == "framework" then [
+          ",preferred,auto,1.33"
+          "eDP-1,2256x1504@60,0x0,1.33"
+        ] else if hostname == "house-of-wind" then [
+          "DP-7,3440x1440@120,0x0,1"
+          "DP-4,1920x1080@60,3440x0,1,transform,1"
+        ] else [
+          ",preferred,auto,1"
+        ];
 
       exec-once = [
         "waybar"
