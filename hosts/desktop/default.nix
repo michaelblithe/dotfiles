@@ -17,7 +17,8 @@
 
   # Make GPU have enough VRAM
   boot.kernelParams = [
-    "amd_iommu=off"
+    "amd_iommu=on"
+    "iommu=pt"
     "amdgpu.gttsize=126976"
     "ttm.pages_limit=32505856"
   ];
