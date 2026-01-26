@@ -8,6 +8,11 @@
     vimAlias = true;
     vimdiffAlias = true;
 
+    # Treesitter parsers pre-compiled by Nix (all grammars to avoid runtime compilation)
+    plugins = with pkgs.vimPlugins; [
+      (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
+    ];
+
     # LazyVim and plugins will be managed by lazy.nvim at runtime
     # We just need to provide neovim and basic dependencies
     extraPackages = with pkgs; [

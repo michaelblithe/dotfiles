@@ -12,8 +12,17 @@
   hardware.enableRedistributableFirmware = true;
   hardware.firmware = [ pkgs.linux-firmware ];
 
-  # Graphics and OpenGL
-  hardware.opengl.enable = true;
+  # Graphics and Vulkan
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-compute-runtime
+    ];
+  };
+
+  # Allow Vulkan to allocate up to 60GB of system RAM for iGPU
+  environment.variables.MESA_VK_DEVICE_MAX_MEMORY_PERCENT = "95";
 
   # Ambient light sensor for auto-brightness
   hardware.sensor.iio.enable = true;

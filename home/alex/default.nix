@@ -23,5 +23,6 @@
     ../chrome
     ../direnv
     ../discord
+    ../calibre
   ];
 }
