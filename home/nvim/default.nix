@@ -23,6 +23,9 @@
       typescript-language-server
       rust-analyzer
       gopls
+
+      # tree sitter
+      gcc
       
       # Formatters
       stylua
