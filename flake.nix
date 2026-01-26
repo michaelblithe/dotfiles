@@ -63,13 +63,6 @@
         thinkpad = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            {
-              nixpkgs.overlays = [
-                nix-vscode-extensions.overlays.default
-                nur.overlays.default
-              ];
-              nixpkgs.config.allowUnfree = true;
-            }
             home-manager.nixosModules.home-manager
             {
               home-manager.sharedModules = [
