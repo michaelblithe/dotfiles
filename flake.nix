@@ -80,7 +80,7 @@
             }
             ./hosts/thinkpad
           ];
-          specialArgs = { inherit self; };
+          specialArgs = { inherit self inputs; };
         };
         framework = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
