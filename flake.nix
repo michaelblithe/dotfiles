@@ -31,6 +31,11 @@
       url = "github:ggml-org/llama.cpp/0c3b7a9efebc73d206421c99b7eb6b6716231322";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -43,6 +48,7 @@
     , nur
     , sops-nix
     , llama-cpp
+    , nixos-wsl
     , ...
     }:
 
@@ -153,6 +159,28 @@
               };
             }
             ./hosts/luna
+          ];
+          specialArgs = { inherit self inputs; };
+        };
+        wsl = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            nixos-wsl.nixosModules.default
+            sops-nix.nixosModules.sops
+            configuration
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.sharedModules = [
+                sops-nix.homeManagerModules.sops
+              ];
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.alex = import ./home/alex;
+              home-manager.extraSpecialArgs = {
+                hostname = "wsl";
+              };
+            }
+            ./hosts/wsl
           ];
           specialArgs = { inherit self inputs; };
         };
