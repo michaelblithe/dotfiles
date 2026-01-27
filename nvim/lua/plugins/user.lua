@@ -39,6 +39,15 @@ return {
       ensure_installed = {},
     },
   },
+  -- Configure LSPs provided by Nix
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        nil_ls = {},
+      },
+    },
+  },
   -- Override LazyVim's default colorscheme
   {
     "LazyVim/LazyVim",
