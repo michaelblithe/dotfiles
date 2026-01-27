@@ -26,7 +26,7 @@
 
       # tree sitter
       gcc
-      
+
       # Formatters
       stylua
       nixpkgs-fmt
@@ -35,7 +35,7 @@
       prettier
       sqlfluff
       ruff
-      
+
       # Tools for telescope and other plugins
       ripgrep
       fd
@@ -47,7 +47,7 @@
       python3
       unzip
       cargo
-      
+
       # Clipboard support
       wl-clipboard
       xclip
