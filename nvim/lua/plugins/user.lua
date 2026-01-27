@@ -32,6 +32,11 @@
 -- }
 
 return {
+  -- Direnv integration - auto-load .envrc environments
+  {
+    "direnv/direnv.vim",
+    lazy = false,
+  },
   -- Disable Mason auto-install since Nix provides our tools
   {
     "williamboman/mason.nvim",

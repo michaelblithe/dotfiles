@@ -40,11 +40,13 @@
       ripgrep
       fd
       git
+      lazygit
 
       # Mason dependencies
       nodejs
       python3
       unzip
+      cargo
       
       # Clipboard support
       wl-clipboard
