@@ -15,6 +15,7 @@
     wl-clipboard
     cliphist
     lxqt.lxqt-policykit
+    networkmanagerapplet
   ];
 
   wayland.windowManager.hyprland = {
@@ -112,6 +113,7 @@
         "lxqt-policykit-agent"
       ]
       ++ lib.optionals (hostname == "framework") [
+        "sleep 3 && nm-applet"
         "wlsunset -l 40.7 -L -74.0"
       ];
 
