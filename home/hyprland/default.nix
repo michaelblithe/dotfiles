@@ -152,6 +152,11 @@
         "$mod, 6, workspace, 6"
         "$mod, 7, workspace, 7"
         "$mod, 8, workspace, 8"
+        # Resize windows
+        "$mod SHIFT, H, resizeactive, -30 0"
+        "$mod SHIFT, L, resizeactive, 30 0"
+        "$mod SHIFT, K, resizeactive, 0 -30"
+        "$mod SHIFT, J, resizeactive, 0 30"
         # Move focused window to workspaces 1-8
         "$mod SHIFT, 1, movetoworkspace, 1"
         "$mod SHIFT, 2, movetoworkspace, 2"
@@ -170,9 +175,6 @@
         ",XF86AudioMute, exec, pamixer --toggle-mute"
         # Lock screen
         "$mod CTRL, L, exec, hyprlock"
-        # Power management
-        ",XF86PowerOff, exec, systemctl suspend"
-        "$mod SHIFT, L, exec, systemctl suspend"
         # Screenshot with grimblast
         "$mod SHIFT, S, exec, grimblast copy area"
         # Color picker
