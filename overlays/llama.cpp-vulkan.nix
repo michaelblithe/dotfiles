@@ -3,12 +3,16 @@ llama-cpp-input: final: prev: {
   llama-cpp =
     let
       # Call the llama.cpp package with Vulkan only (for framework)
-      llamaBase = prev.callPackage "${llama-cpp-input}/.devops/nix/package.nix" {
+      llamaBase = (prev.callPackage "${llama-cpp-input}/.devops/nix/package.nix" {
         useCuda = false;
         useRocm = false;
         useVulkan = true;
         llamaVersion = llama-cpp-input.rev or llama-cpp-input.shortRev or "git";
-      };
+      }).overrideAttrs (old: {
+        # Add OpenSSL for HTTPS/TLS support
+        buildInputs = old.buildInputs or [] ++ [ prev.openssl ];
+        cmakeFlags = old.cmakeFlags or [] ++ [ (prev.lib.cmakeBool "LLAMA_OPENSSL" true) ];
+      });
     in
     prev.symlinkJoin {
       name = "llama-cpp-with-all-binaries";
