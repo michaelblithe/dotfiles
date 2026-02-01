@@ -100,6 +100,10 @@
                 hostname = "framework";
               };
             }
+            {
+              nixpkgs.config.allowUnfree = true;
+              nixpkgs.overlays = [ (import ./overlays/llama.cpp.nix llama-cpp) ];
+            }
             ./hosts/framework
           ];
           specialArgs = { inherit self inputs; };

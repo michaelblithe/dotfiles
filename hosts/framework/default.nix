@@ -5,7 +5,7 @@
   imports = [
     ../common
     ./disko.nix
-
+    ../../modules/ai
   ];
 
   # Hardware support
@@ -159,5 +159,8 @@
   home-manager.users.alex.home.stateVersion = "25.11";
   system.stateVersion = "25.11";
 
-  services.ai-open-webui.enable = true;
+  services.ai-llama-server = {
+    enable = true;
+    modelPresetFile = ../../modules/ai/model-files/framework.ini;
+  };
 }

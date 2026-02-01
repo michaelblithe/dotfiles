@@ -5,6 +5,7 @@
   imports = [
     ../common
     ./disko.nix
+    ../../modules/ai
   ];
   
   hardware.enableRedistributableFirmware = true;
@@ -52,4 +53,9 @@
     cudaPackages.cudnn
     llama-cpp
   ];
+
+  services.ai-llama-server = {
+    enable = true;
+    modelPresetFile = ../../modules/ai/model-files/desktop.ini;
+  };
 }
