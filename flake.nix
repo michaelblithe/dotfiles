@@ -102,7 +102,7 @@
             }
             {
               nixpkgs.config.allowUnfree = true;
-              nixpkgs.overlays = [ (import ./overlays/llama.cpp.nix llama-cpp) ];
+              nixpkgs.overlays = [ (import ./overlays/llama.cpp-vulkan.nix llama-cpp) ];
             }
             ./hosts/framework
           ];
@@ -128,7 +128,7 @@
             }
             {
               nixpkgs.config.allowUnfree = true;
-              nixpkgs.overlays = [ (import ./overlays/llama.cpp.nix llama-cpp) ];
+              nixpkgs.overlays = [ (import ./overlays/llama.cpp-full.nix llama-cpp) ];
             }
             ./hosts/desktop
             ./modules/openssh

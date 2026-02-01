@@ -1,8 +1,8 @@
 
 llama-cpp-input: final: prev: {
-  llama-cpp = 
+  llama-cpp =
     let
-      # Call the llama.cpp package with our nixpkgs (which has allowUnfree = true)
+      # Call the llama.cpp package with all GPU backends (for desktop)
       llamaBase = prev.callPackage "${llama-cpp-input}/.devops/nix/package.nix" {
         useCuda = true;
         useRocm = true;
