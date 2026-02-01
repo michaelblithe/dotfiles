@@ -79,6 +79,7 @@ in
 
       script = ''
         export LLAMA_ARG_API_KEY=$(cat ${config.sops.secrets.llama-cpp.path})
+        export HF_HOME=/var/lib/llama-server
         exec ${cfg.package}/bin/llama-server \
           --host ${cfg.host} \
           --port ${toString cfg.port} \
