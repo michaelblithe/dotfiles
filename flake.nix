@@ -28,7 +28,7 @@
     };
 
     llama-cpp = {
-      url = "github:ggml-org/llama.cpp/0c3b7a9efebc73d206421c99b7eb6b6716231322";
+      url = "github:ggml-org/llama.cpp/2634ed207a17db1a54bd8df0555bd8499a6ab691";
     };
 
   };
