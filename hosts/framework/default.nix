@@ -154,6 +154,7 @@
     nvme-cli
     lm_sensors
     bluetuith # Bluetooth TUI
+    llama-cpp
   ];
 
   home-manager.users.alex.home.stateVersion = "25.11";
