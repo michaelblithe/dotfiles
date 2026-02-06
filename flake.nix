@@ -34,18 +34,18 @@
   };
 
   outputs =
-    inputs@{ self
-    , nixpkgs
-    , nixpkgs-unstable
-    , home-manager
-    , disko
-    , nix-vscode-extensions
-    , nur
-    , sops-nix
-    , llama-cpp
-    , ...
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      disko,
+      nix-vscode-extensions,
+      nur,
+      sops-nix,
+      llama-cpp,
+      ...
     }:
-
 
     let
       configuration =
