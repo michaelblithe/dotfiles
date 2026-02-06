@@ -28,7 +28,12 @@
     };
 
     llama-cpp = {
-      url = "github:ggml-org/llama.cpp/2634ed207a17db1a54bd8df0555bd8499a6ab691";
+      url = "github:ggml-org/llama.cpp/22cae832188a1f08d18bd0a707a4ba5cd03c7349";
+    };
+
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
@@ -44,6 +49,7 @@
       nur,
       sops-nix,
       llama-cpp,
+      nixos-hardware,
       ...
     }:
 
@@ -79,6 +85,7 @@
               };
             }
             ./hosts/thinkpad
+            nixos-hardware.nixosModules.lenovo-thinkpad-x230
           ];
           specialArgs = { inherit self inputs; };
         };
@@ -105,6 +112,7 @@
               nixpkgs.overlays = [ (import ./overlays/llama.cpp-vulkan.nix llama-cpp) ];
             }
             ./hosts/framework
+            nixos-hardware.nixosModules.framework-13th-gen-intel
           ];
           specialArgs = { inherit self inputs; };
         };
@@ -132,6 +140,7 @@
             }
             ./hosts/desktop
             ./modules/openssh
+            nixos-hardware.nixosModules.framework-desktop-amd-ai-max-300-series
           ];
           specialArgs = { inherit self inputs; };
         };
