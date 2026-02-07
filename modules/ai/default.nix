@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -55,7 +60,7 @@ in
       group = "llama-server";
       description = "llama-server service user";
     };
-    users.groups.llama-server = {};
+    users.groups.llama-server = { };
 
     # Systemd service
     systemd.services.llama-server = {
@@ -67,7 +72,10 @@ in
         Type = "exec";
         User = "llama-server";
         Group = "llama-server";
-        SupplementaryGroups = [ "video" "render" ];
+        SupplementaryGroups = [
+          "video"
+          "render"
+        ];
         Restart = "always";
         RestartSec = "5s";
         PrivateTmp = true;
