@@ -19,6 +19,11 @@
         vscodevim.vim
         anthropic.claude-code
         mkhl.direnv
+        dbaeumer.vscode-eslint
+        editorconfig.editorconfig
+        ms-azuretools.vscode-docker
+        ms-vscode.makefile-tools
+
       ];
       userSettings = {
         "github.copilot.nextEditSuggestions.enabled" = true;
@@ -50,6 +55,7 @@
           "scminput" = false;
         };
         "workbench.activityBar.location" = "top";
+        "git.enableSmartCommit" = true;
       };
     };
   };
