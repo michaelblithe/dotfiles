@@ -109,6 +109,7 @@ in
       unzip
       python3
       discordo
+      papirus-icon-theme
     ])
     ++ [
       unstable.lmstudio
