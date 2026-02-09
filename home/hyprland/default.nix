@@ -6,6 +6,11 @@
 }:
 
 {
+  home.pointerCursor = {
+    gtk.enable = true;
+    name = "capitaine-cursors";
+    package = pkgs.capitaine-cursors;
+  };
   home.packages = with pkgs; [
     brightnessctl
     pamixer
