@@ -91,6 +91,14 @@
         preserve_split = true;
       };
 
+      # Scratchpad terminal rules
+      windowrule = [
+        "float on, match:class ^(kitty-scratchpad)$"
+        "size 50% 40%, match:class ^(kitty-scratchpad)$"
+        "center on, match:class ^(kitty-scratchpad)$"
+        "animation slide, match:class ^(kitty-scratchpad)$"
+      ];
+
       monitor =
         if hostname == "framework" then
           [
@@ -116,6 +124,8 @@
         "wl-paste --type image --watch cliphist store"
         # Polkit authentication agent
         "lxqt-policykit-agent"
+        # Terminal scratchpad
+        "[workspace special:terminal silent] kitty --class kitty-scratchpad"
       ]
       ++ lib.optionals (hostname == "framework") [
         "sleep 3 && nm-applet"
@@ -140,6 +150,9 @@
         "$mod, RETURN, exec, kitty"
         "$mod, D, exec, rofi -show drun"
         "$mod SHIFT, Q, killactive,"
+        # Toggle terminal scratchpad
+        "$mod, grave, togglespecialworkspace, terminal"
+        "$mod SHIFT, grave, movetoworkspace, special:terminal"
         "$mod, F, fullscreen,"
         "$mod, T, togglefloating,"
         "$mod, M, exit,"
