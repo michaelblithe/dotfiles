@@ -6,6 +6,11 @@
 }:
 
 {
+  home.pointerCursor = {
+    gtk.enable = true;
+    name = "capitaine-cursors";
+    package = pkgs.capitaine-cursors;
+  };
   home.packages = with pkgs; [
     brightnessctl
     pamixer
@@ -86,10 +91,18 @@
         preserve_split = true;
       };
 
+      # Scratchpad terminal rules
+      windowrule = [
+        "float on, match:class ^(kitty-scratchpad)$"
+        "size 50% 40%, match:class ^(kitty-scratchpad)$"
+        "center on, match:class ^(kitty-scratchpad)$"
+        "animation slide, match:class ^(kitty-scratchpad)$"
+      ];
+
       monitor =
         if hostname == "framework" then
           [
-            ",preferred,auto,1.33"
+            ",preferred,auto,1"
             "eDP-1,2256x1504@60,0x0,1.33"
           ]
         else if hostname == "house-of-wind" then
@@ -111,6 +124,8 @@
         "wl-paste --type image --watch cliphist store"
         # Polkit authentication agent
         "lxqt-policykit-agent"
+        # Terminal scratchpad
+        "[workspace special:terminal silent] kitty --class kitty-scratchpad"
       ]
       ++ lib.optionals (hostname == "framework") [
         "sleep 3 && nm-applet"
@@ -135,6 +150,9 @@
         "$mod, RETURN, exec, kitty"
         "$mod, D, exec, rofi -show drun"
         "$mod SHIFT, Q, killactive,"
+        # Toggle terminal scratchpad
+        "$mod, grave, togglespecialworkspace, terminal"
+        "$mod SHIFT, grave, movetoworkspace, special:terminal"
         "$mod, F, fullscreen,"
         "$mod, T, togglefloating,"
         "$mod, M, exit,"

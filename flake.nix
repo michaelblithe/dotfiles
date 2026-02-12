@@ -2,10 +2,10 @@
   description = "Alex's dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
@@ -36,22 +36,30 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    astal = {
+      url = "github:aylur/astal";
+    };
+
+    ags = {
+      url = "github:aylur/ags"; 
+    };
+
   };
 
   outputs =
-    inputs@{ self
-    , nixpkgs
-    , nixpkgs-unstable
-    , home-manager
-    , disko
-    , nix-vscode-extensions
-    , nur
-    , sops-nix
-    , llama-cpp
-    , nixos-hardware
-    , ...
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      disko,
+      nix-vscode-extensions,
+      nur,
+      sops-nix,
+      llama-cpp,
+      nixos-hardware,
+      ...
     }:
-
 
     let
       configuration =
@@ -85,6 +93,7 @@
               };
             }
             ./hosts/thinkpad
+            nixos-hardware.nixosModules.lenovo-thinkpad-x230
           ];
           specialArgs = { inherit self inputs; };
         };
@@ -111,6 +120,7 @@
               nixpkgs.overlays = [ (import ./overlays/llama.cpp-vulkan.nix llama-cpp) ];
             }
             ./hosts/framework
+            nixos-hardware.nixosModules.framework-13th-gen-intel
           ];
           specialArgs = { inherit self inputs; };
         };
