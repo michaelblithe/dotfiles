@@ -17,6 +17,8 @@
   system.stateVersion = "25.11";
 
   # Make GPU have enough VRAM
+  boot.initrd.kernelModules = [ "thunderbolt" ];
+
   boot.kernelParams = [
     "amd_iommu=on"
     "iommu=pt"
@@ -59,6 +61,8 @@
     rocmPackages.clr
     llama-cpp
   ];
+
+  services.openssh.enable = true;
 
   services.ai-llama-server = {
     enable = true;
