@@ -28,7 +28,7 @@
     };
 
     llama-cpp = {
-      url = "github:ggml-org/llama.cpp/79cc0f2dafbc7cbbfc37a8d99b399b816e141b90";
+      url = "github:ggml-org/llama.cpp/2dec5480947c9a87c7b47426931d0d64421e4268";
     };
 
     nixos-hardware = {
@@ -144,7 +144,7 @@
             }
             {
               nixpkgs.config.allowUnfree = true;
-              nixpkgs.overlays = [ (import ./overlays/llama.cpp-vulkan.nix llama-cpp) ];
+              nixpkgs.overlays = [ (import ./overlays/llama.cpp-full.nix llama-cpp) ];
             }
             ./hosts/desktop
             ./modules/openssh

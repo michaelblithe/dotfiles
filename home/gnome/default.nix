@@ -15,7 +15,6 @@
 
     # Power settings - power saver profile
     "org/gnome/settings-daemon/plugins/power" = {
-      power-button-action = "suspend";
       power-saver-profile-on-low-battery = true;
     };
   };

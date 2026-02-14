@@ -30,28 +30,28 @@
   powerManagement.cpuFreqGovernor = "performance";
 
   # GPU drivers
-  # services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # ROCm support for AMD GPU
   # hardware.amdgpu.opencl.enable = true;
   # hardware.amdgpu.initrd.enable = true;
   hardware.graphics.enable = true;
-  # virtualisation.podman.enableNvidia = true;
+  virtualisation.podman.enableNvidia = true;
 
-  # hardware.nvidia = {
-  #   # Modesetting is required
-  #   modesetting.enable = true;
+  hardware.nvidia = {
+    # Modesetting is required
+    modesetting.enable = true;
 
-  #   # Use the proprietary NVIDIA drivers
-  #   open = false;
+    # Use the proprietary NVIDIA drivers
+    open = false;
 
-  #   # Enable the NVIDIA settings menu
-  #   nvidiaSettings = true;
+    # Enable the NVIDIA settings menu
+    nvidiaSettings = true;
 
-  #   # Select the appropriate driver version
-  #   # Use "production" for stable, or specify a version
-  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
-  # };
+    # Select the appropriate driver version
+    # Use "production" for stable, or specify a version
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 
   # CUDA + ROCm support
   environment.systemPackages = with pkgs; [
