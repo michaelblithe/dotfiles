@@ -28,7 +28,7 @@
     };
 
     llama-cpp = {
-      url = "github:ggml-org/llama.cpp/2dec5480947c9a87c7b47426931d0d64421e4268";
+      url = "github:ggml-org/llama.cpp/238856ec8fb79b7968e43f1e612af6ab2e3cfe9a";
     };
 
     nixos-hardware = {
