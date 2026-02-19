@@ -57,6 +57,9 @@
         "workbench.activityBar.location" = "top";
         "git.enableSmartCommit" = true;
         "editor.minimap.enabled" = false;
+        "chat.agentSkillsLocations" = {
+          "~/.config/opencode/skills" = true;
+        };
       };
     };
   };
