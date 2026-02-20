@@ -24,5 +24,6 @@
     ../direnv
     ../discord
     ../calibre
+    ../opencode
   ];
 }

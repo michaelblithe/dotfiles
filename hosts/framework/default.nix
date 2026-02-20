@@ -5,7 +5,7 @@
   imports = [
     ../common
     ./disko.nix
-
+    ../../modules/ai
   ];
 
   # Hardware support
@@ -68,9 +68,6 @@
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-      # Battery health preservation
-      START_CHARGE_THRESH_BAT0 = 40;
-      STOP_CHARGE_THRESH_BAT0 = 80;
 
       # Aggressive power saving
       WIFI_PWR_ON_BAT = "on";
@@ -94,6 +91,11 @@
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"
   '';
+
+  # Framework battery charge limit (90%)
+  systemd.tmpfiles.rules = [
+    "w /sys/class/power_supply/BAT1/charge_control_end_threshold - - - - 90"
+  ];
 
   # Firmware updates
   services.fwupd.enable = true;
@@ -144,7 +146,13 @@
     ];
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    # Prevent apps from applying their own HiDPI scaling on top of Wayland's
+    GDK_SCALE = "1";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "0";
+    QT_SCALE_FACTOR = "1";
+  };
 
   # Framework-specific packages
   environment.systemPackages = with pkgs; [
@@ -154,10 +162,14 @@
     nvme-cli
     lm_sensors
     bluetuith # Bluetooth TUI
+    llama-cpp
   ];
 
   home-manager.users.alex.home.stateVersion = "25.11";
   system.stateVersion = "25.11";
 
-  services.ai-open-webui.enable = true;
+  services.ai-llama-server = {
+    enable = true;
+    modelPresetFile = ../../modules/ai/model-files/framework.ini;
+  };
 }

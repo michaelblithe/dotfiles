@@ -9,9 +9,9 @@
         plugins = ["git"];
       };
       shellAliases = {
-        llama-server-vulkan = "nix shell github:ggml-org/llama.cpp#vulkan --command llama-server";
-        llama-server-cuda = "nix shell github:ggml-org/llama.cpp#cuda --command llama-server";
-        llama-server-rocm = "nix shell github:ggml-org/llama.cpp#rocm --override-input nixpkgs github:NixOS/nixpkgs/nixos-unstable --command llama-server";
+        vpn-up = "sudo systemctl stop wg-quick-wg1 2>/dev/null; sudo systemctl start wg-quick-wg0";
+        vpn-up-2 = "sudo systemctl stop wg-quick-wg0 2>/dev/null; sudo systemctl start wg-quick-wg1";
+        vpn-down = "sudo systemctl stop wg-quick-wg0 2>/dev/null; sudo systemctl stop wg-quick-wg1 2>/dev/null";
       };
     };
 }

@@ -18,12 +18,19 @@
         jnoortheen.nix-ide
         vscodevim.vim
         anthropic.claude-code
+        mkhl.direnv
+        dbaeumer.vscode-eslint
+        editorconfig.editorconfig
+        ms-azuretools.vscode-docker
+        ms-vscode.makefile-tools
+
       ];
       userSettings = {
         "github.copilot.nextEditSuggestions.enabled" = true;
         "vim.useSystemClipboard" = true;
         "vim.handleKeys" = {
           "<C-p>" = false;
+          "<C-b>" = false;
         };
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nil";
@@ -39,7 +46,6 @@
         "redhat.telemetry.enabled" = false;
         "containers.containerClient" = "com.microsoft.visualstudio.containers.podman";
         "containers.orchestratorClient" = "com.microsoft.visualstudio.orchestrators.podmancompose";
-        #"remote.containers.dockerPath" = pkgs.podman + "/bin/podman";
         "editor.fontFamily" = "'Droid Sans Mono', 'monospace', monospace";
         "git.autofetch" = true;
         "github.copilot.enable" = {
@@ -47,6 +53,12 @@
           "plaintext" = false;
           "markdown" = true;
           "scminput" = false;
+        };
+        "workbench.activityBar.location" = "top";
+        "git.enableSmartCommit" = true;
+        "editor.minimap.enabled" = false;
+        "chat.agentSkillsLocations" = {
+          "~/.config/opencode/skills" = true;
         };
       };
     };
