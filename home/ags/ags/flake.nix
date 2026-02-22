@@ -24,6 +24,15 @@
       io
       astal4 # or astal3 for gtk3
       # notifd tray wireplumber
+      battery
+      bluetooth
+      hyprland
+      apps
+      mpris
+      network
+      powerprofiles
+      tray
+      
     ];
 
     extraPackages =
