@@ -18,7 +18,8 @@
   home-manager.users.michaelblithe = {
     home.stateVersion = "25.11";
     imports = [
+      ../../home/macbook
     ];
-  }; 
+  };
 
 }

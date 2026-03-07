@@ -170,7 +170,7 @@
               ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.alex = import ./home/alex;
+              home-manager.users.alex = import ./home/luna;
               home-manager.extraSpecialArgs = {
                 hostname = "luna";
               };

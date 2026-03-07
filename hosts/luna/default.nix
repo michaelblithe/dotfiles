@@ -5,8 +5,14 @@
   imports = [
     ../common
     ./disko.nix
-    
+    ../../modules/openssh
   ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.networkmanager.enable = true;
+
   home-manager.users.alex.home.stateVersion = "25.11";
   system.stateVersion = "25.11";
 }

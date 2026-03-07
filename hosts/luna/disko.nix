@@ -12,15 +12,11 @@
             type = "EF00";
             content = { type = "filesystem"; format = "vfat"; mountpoint = "/boot"; };
           };
-          luks = {
+          root = {
             size = "100%";
             content = {
-              type = "luks";
-              name = "cryptroot";
-              content = {
-                type = "lvm_pv";
-                vg = "pool";
-              };
+              type = "lvm_pv";
+              vg = "pool";
             };
           };
         };
