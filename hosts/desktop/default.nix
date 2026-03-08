@@ -70,4 +70,9 @@
     modelPresetFile = ../../modules/ai/model-files/desktop.ini;
   };
 
+  imports = [
+    ../../modules/openssh
+    ../../modules/tailscale
+  ]
+
 }
