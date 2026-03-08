@@ -7,6 +7,7 @@
     ./disko.nix
     ../../modules/openssh
     ../../modules/tailscale
+    ../../modules/containerization
   ];
 
   boot.initrd.availableKernelModules = [ "usb_storage" "uas" "sd_mod" ];
