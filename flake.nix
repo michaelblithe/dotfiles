@@ -28,7 +28,7 @@
     };
 
     llama-cpp = {
-      url = "github:ggml-org/llama.cpp/17a42589467165be7114b79797e794716b30ace3";
+      url = "github:ggml-org/llama.cpp/master";
     };
 
     nixos-hardware = {
@@ -57,6 +57,7 @@
       nixpkgs-unstable,
       home-manager,
       disko,
+      hyprland,
       nix-vscode-extensions,
       nur,
       sops-nix,
