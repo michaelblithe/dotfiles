@@ -8,5 +8,6 @@
     ../direnv
     ../opencode
     ../claude-code
+    ../syncthing
   ];
 }
