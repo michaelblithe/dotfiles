@@ -3,12 +3,13 @@
 {
   imports = [
     ../git
+    ../zsh
     ../nvim
     ../direnv
-    ../kitty
-    ../fonts
-    ../vscode
+    # ../kitty
+    # ../fonts
+    # ../vscode
     ../opencode
-    ../claude-code
+    # ../claude-code
   ];
 }
