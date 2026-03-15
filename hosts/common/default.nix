@@ -26,6 +26,11 @@
     initialPassword = "changeme";
   };
 
+  services.clamav = {
+    daemon.enable = true;
+    updater.enable = true;
+  };
+
   programs.zsh.enable = true;
   programs.nix-ld.enable = true;
 
