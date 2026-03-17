@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   nix.settings.experimental-features = [
@@ -26,15 +26,22 @@
     initialPassword = "changeme";
   };
 
+  services.clamav = {
+    daemon.enable = true;
+    updater.enable = true;
+  };
+
   programs.zsh.enable = true;
   programs.nix-ld.enable = true;
 
   imports = [
     ../../modules/firejail
+    ../../modules/wireguard
   ];
 
-  environment.systemPackages =
-    (with pkgs; [
+  environment.systemPackages = (
+    with pkgs;
+    [
       git
       wget
       curl
@@ -51,6 +58,9 @@
       lazydocker
       lftp
       unzip
+      jq
+      httpie
       python3
-    ]);
+    ]
+  );
 }
