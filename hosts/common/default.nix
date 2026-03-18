@@ -61,6 +61,7 @@
       jq
       httpie
       python3
+      xq
     ]
   );
 }
