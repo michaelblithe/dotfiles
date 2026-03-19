@@ -46,6 +46,9 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin = {
+      url = "github:catppuccin/nix";
+    };
 
   };
 
@@ -63,6 +66,7 @@
       llama-cpp,
       nixos-hardware,
       nix-darwin,
+      catppuccin,
       ...
     }:
 
@@ -95,6 +99,7 @@
               home-manager.users.alex = import ./home/alex;
               home-manager.extraSpecialArgs = {
                 hostname = "thinkpad";
+                inherit catppuccin;
               };
             }
             ./hosts/thinkpad
@@ -118,6 +123,7 @@
               home-manager.users.alex = import ./home/alex;
               home-manager.extraSpecialArgs = {
                 hostname = "framework";
+                inherit catppuccin;
               };
             }
             {
@@ -145,6 +151,7 @@
               home-manager.users.alex = import ./home/alex;
               home-manager.extraSpecialArgs = {
                 hostname = "house-of-wind";
+                inherit catppuccin;
               };
             }
             {

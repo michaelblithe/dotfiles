@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
+{ config, catppuccin, pkgs, ... }:
 
 {
+  catppuccin.opencode = {
+    enable = false;
+  };
   programs.opencode = {
     enable = true;
   };
