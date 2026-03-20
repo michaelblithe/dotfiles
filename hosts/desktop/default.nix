@@ -72,6 +72,7 @@ boot.kernelParams = [
 
   services.ai-llama-server = {
     enable = true;
+    host = "0.0.0.0";
     modelPresetFile = ../../modules/ai/model-files/desktop.ini;
   };
 
