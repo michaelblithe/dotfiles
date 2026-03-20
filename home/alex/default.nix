@@ -25,6 +25,8 @@
     ../opencode
     ../claude-code
     ../tmux
+    ../spotify
+    ../lmstudio
     catppuccin.homeModules.catppuccin
   ];
 }

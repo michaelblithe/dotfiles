@@ -8,6 +8,7 @@
     ../../modules/ai/llama-cpp.nix
     ../../modules/containerization
     ../../modules/desktop
+    ../../modules/nvidia-power-limit
     ../../modules/openssh
     ../../modules/tailscale
   ];
@@ -16,6 +17,7 @@
   hardware.firmware = [ pkgs.linux-firmware ];
   networking.networkmanager.enable = true;
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
   home-manager.users.alex.home.stateVersion = "25.11";
   system.stateVersion = "25.11";
@@ -54,6 +56,12 @@ boot.kernelParams = [
     # Select the appropriate driver version
     # Use "production" for stable, or specify a version
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    # Power limit for RTX 3090 (default 350W, set to 250W)
+    powerLimit = {
+      enable = true;
+      watts = 250;
+    };
   };
 
   # CUDA + ROCm support
@@ -72,6 +80,7 @@ boot.kernelParams = [
 
   services.ai-llama-server = {
     enable = true;
+    host = "0.0.0.0";
     modelPresetFile = ../../modules/ai/model-files/desktop.ini;
   };
 
