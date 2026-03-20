@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, catppuccin, ... }:
 
 {
   imports = [
@@ -11,5 +11,6 @@
     # ../vscode
     ../opencode
     # ../claude-code
+    catppuccin.homeModules.catppuccin
   ];
 }

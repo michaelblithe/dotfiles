@@ -197,6 +197,11 @@
             ];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.users.michaelblithe = import ./home/macbook;
+            home-manager.extraSpecialArgs = {
+              hostname = "macbook";
+              inherit catppuccin;
+            };
           }
           ./hosts/macbook
         ];
