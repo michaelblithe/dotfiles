@@ -8,6 +8,7 @@
     ../../modules/ai/llama-cpp.nix
     ../../modules/containerization
     ../../modules/desktop
+    ../../modules/nvidia-power-limit
     ../../modules/openssh
     ../../modules/tailscale
   ];
@@ -55,6 +56,12 @@ boot.kernelParams = [
     # Select the appropriate driver version
     # Use "production" for stable, or specify a version
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    # Power limit for RTX 3090 (default 350W, set to 250W)
+    powerLimit = {
+      enable = true;
+      watts = 250;
+    };
   };
 
   # CUDA + ROCm support
