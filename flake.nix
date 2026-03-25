@@ -180,6 +180,7 @@
               home-manager.users.alex = import ./home/luna;
               home-manager.extraSpecialArgs = {
                 hostname = "luna";
+                inherit catppuccin;
               };
             }
             ./hosts/luna

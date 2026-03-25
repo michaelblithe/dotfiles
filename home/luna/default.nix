@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, catppuccin, ... }:
 
 {
   imports = [
@@ -9,5 +9,12 @@
     ../opencode
     ../claude-code
     ../syncthing
+    ../gnome
+    ../hyprland
+    ../kitty
+    ../fonts
+    ../rofi
+    ../waybar
+    catppuccin.homeModules.catppuccin
   ];
 }

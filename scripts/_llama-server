@@ -35,7 +35,8 @@ _arguments -s -S \
   {-fa,--flash-attn}'[Flash Attention]:mode:(on off auto)' \
   '(--no-perf)--perf[Enable internal performance timings]' \
   '(--perf)--no-perf[Disable internal performance timings]' \
-  '(--no-escape){-e,--escape}[Process escape sequences]' \
+  '(--no-escape -e)-e[Process escape sequences]' \
+  '(--no-escape -e)--escape[Process escape sequences]' \
   '(--escape -e)--no-escape[Do not process escape sequences]' \
   '--rope-scaling[RoPE frequency scaling method]:method:(none linear yarn)' \
   '--rope-scale[RoPE context scaling factor]:factor:' \
@@ -46,10 +47,13 @@ _arguments -s -S \
   '--yarn-attn-factor[YaRN attention magnitude scale]:factor:' \
   '--yarn-beta-slow[YaRN high correction dim]:value:' \
   '--yarn-beta-fast[YaRN low correction dim]:value:' \
-  '(--no-kv-offload -nkvo){-kvo,--kv-offload}[Enable KV cache offloading]' \
-  '(--kv-offload -kvo){-nkvo,--no-kv-offload}[Disable KV cache offloading]' \
+  '(--no-kv-offload -nkvo)-kvo[Enable KV cache offloading]' \
+  '(--no-kv-offload -nkvo)--kv-offload[Enable KV cache offloading]' \
+  '(--kv-offload -kvo)-nkvo[Disable KV cache offloading]' \
+  '(--kv-offload -kvo)--no-kv-offload[Disable KV cache offloading]' \
   '(--no-repack -nr)--repack[Enable weight repacking]' \
-  '(--repack){-nr,--no-repack}[Disable weight repacking]' \
+  '(--repack)-nr[Disable weight repacking]' \
+  '(--repack)--no-repack[Disable weight repacking]' \
   '--no-host[Bypass host buffer]' \
   {-ctk,--cache-type-k}'[KV cache data type for K]:type:('"${(j: :)cache_types}"')' \
   {-ctv,--cache-type-v}'[KV cache data type for V]:type:('"${(j: :)cache_types}"')' \
@@ -57,8 +61,10 @@ _arguments -s -S \
   '--mlock[Force system to keep model in RAM]' \
   '(--no-mmap)--mmap[Memory-map model (default)]' \
   '(--mmap)--no-mmap[Disable memory-mapping model]' \
-  '(--no-direct-io -ndio){-dio,--direct-io}[Use DirectIO]' \
-  '(--direct-io -dio){-ndio,--no-direct-io}[Disable DirectIO]' \
+  '(--no-direct-io -ndio)-dio[Use DirectIO]' \
+  '(--no-direct-io -ndio)--direct-io[Use DirectIO]' \
+  '(--direct-io -dio)-ndio[Disable DirectIO]' \
+  '(--direct-io -dio)--no-direct-io[Disable DirectIO]' \
   '--numa[NUMA optimization]:type:(distribute isolate numactl)' \
   {-dev,--device}'[Devices for offloading]:devices:' \
   {-ot,--override-tensor}'[Override tensor buffer type]:pattern=type:' \
@@ -142,8 +148,10 @@ _arguments -s -S \
   {-ctxcp,--ctx-checkpoints,--swa-checkpoints}'[Max context checkpoints per slot]:count:' \
   {-cpent,--checkpoint-every-n-tokens}'[Checkpoint interval in tokens]:tokens:' \
   {-cram,--cache-ram}'[Max cache size in MiB]:size:' \
-  '(--no-kv-unified -no-kvu){-kvu,--kv-unified}[Use unified KV buffer]' \
-  '(--kv-unified -kvu){-no-kvu,--no-kv-unified}[Disable unified KV buffer]' \
+  '(--no-kv-unified -no-kvu)-kvu[Use unified KV buffer]' \
+  '(--no-kv-unified -no-kvu)--kv-unified[Use unified KV buffer]' \
+  '(--kv-unified -kvu)-no-kvu[Disable unified KV buffer]' \
+  '(--kv-unified -kvu)--no-kv-unified[Disable unified KV buffer]' \
   '(--no-context-shift)--context-shift[Enable context shift on infinite generation]' \
   '(--context-shift)--no-context-shift[Disable context shift]' \
   {-r,--reverse-prompt}'[Halt at prompt]:prompt:' \
@@ -153,12 +161,15 @@ _arguments -s -S \
   '--spm-infill[Use Suffix/Prefix/Middle pattern for infill]' \
   '--pooling[Pooling type for embeddings]:type:(none mean cls last rank)' \
   {-np,--parallel}'[Number of server slots]:slots:' \
-  '(--no-cont-batching -nocb){-cb,--cont-batching}[Enable continuous batching]' \
-  '(--cont-batching -cb){-nocb,--no-cont-batching}[Disable continuous batching]' \
+  '(--no-cont-batching -nocb)-cb[Enable continuous batching]' \
+  '(--no-cont-batching -nocb)--cont-batching[Enable continuous batching]' \
+  '(--cont-batching -cb)-nocb[Disable continuous batching]' \
+  '(--cont-batching -cb)--no-cont-batching[Disable continuous batching]' \
   {-mm,--mmproj}'[Multimodal projector file]:file:_files -g "*.gguf"' \
   {-mmu,--mmproj-url}'[Multimodal projector URL]:url:' \
   '(--no-mmproj --no-mmproj-auto)--mmproj-auto[Auto-use multimodal projector]' \
-  '(--mmproj-auto){--no-mmproj,--no-mmproj-auto}[Disable auto multimodal projector]' \
+  '(--mmproj-auto)--no-mmproj[Disable auto multimodal projector]' \
+  '(--mmproj-auto)--no-mmproj-auto[Disable auto multimodal projector]' \
   '(--no-mmproj-offload)--mmproj-offload[GPU offload for multimodal projector]' \
   '(--mmproj-offload)--no-mmproj-offload[Disable GPU offload for multimodal projector]' \
   '--image-min-tokens[Min tokens per image]:tokens:' \
