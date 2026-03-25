@@ -1,0 +1,251 @@
+#compdef llama-server
+
+# Zsh completion for llama-server (llama.cpp HTTP server)
+# https://github.com/ggml-org/llama.cpp
+#
+
+local -a cache_types=(f32 f16 bf16 q8_0 q4_0 q4_1 iq4_nl q5_0 q5_1)
+
+_arguments -s -S \
+  '(- *)'{-h,--help,--usage}'[Print usage and exit]' \
+  '(- *)--version[Show version and build info]' \
+  '(- *)--license[Show source code license and dependencies]' \
+  '(- *)'{-cl,--cache-list}'[Show list of models in cache]' \
+  '(- *)--completion-bash[Print source-able bash completion script]' \
+  '(- *)--list-devices[Print list of available devices and exit]' \
+  '--verbose-prompt[Print a verbose prompt before generation]' \
+  {-t,--threads}'[CPU threads for generation]:threads (default -1):' \
+  {-tb,--threads-batch}'[Threads for batch/prompt processing]:threads:' \
+  {-C,--cpu-mask}'[CPU affinity mask (hex)]:mask:' \
+  {-Cr,--cpu-range}'[CPU range for affinity]:range (lo-hi):' \
+  '--cpu-strict[Use strict CPU placement]:enable:(0 1)' \
+  '--prio[Set process/thread priority]:priority:((low\:-1 normal\:0 medium\:1 high\:2 realtime\:3))' \
+  '--poll[Polling level to wait for work]:level (0-100):' \
+  {-Cb,--cpu-mask-batch}'[CPU affinity mask for batch]:mask:' \
+  {-Crb,--cpu-range-batch}'[CPU range for batch affinity]:range (lo-hi):' \
+  '--cpu-strict-batch[Strict CPU placement for batch]:enable:(0 1)' \
+  '--prio-batch[Thread priority for batch]:priority:(0 1 2 3)' \
+  '--poll-batch[Polling for batch]:enable:(0 1)' \
+  {-c,--ctx-size}'[Prompt context size (0=from model)]:size:' \
+  {-n,--predict,--n-predict}'[Tokens to predict (-1=infinity)]:count:' \
+  {-b,--batch-size}'[Logical max batch size]:size:' \
+  {-ub,--ubatch-size}'[Physical max batch size]:size:' \
+  '--keep[Tokens to keep from initial prompt]:count:' \
+  '--swa-full[Use full-size SWA cache]' \
+  {-fa,--flash-attn}'[Flash Attention]:mode:(on off auto)' \
+  '(--no-perf)--perf[Enable internal performance timings]' \
+  '(--perf)--no-perf[Disable internal performance timings]' \
+  '(--no-escape){-e,--escape}[Process escape sequences]' \
+  '(--escape -e)--no-escape[Do not process escape sequences]' \
+  '--rope-scaling[RoPE frequency scaling method]:method:(none linear yarn)' \
+  '--rope-scale[RoPE context scaling factor]:factor:' \
+  '--rope-freq-base[RoPE base frequency]:frequency:' \
+  '--rope-freq-scale[RoPE frequency scaling factor]:factor:' \
+  '--yarn-orig-ctx[YaRN original context size]:size:' \
+  '--yarn-ext-factor[YaRN extrapolation mix factor]:factor:' \
+  '--yarn-attn-factor[YaRN attention magnitude scale]:factor:' \
+  '--yarn-beta-slow[YaRN high correction dim]:value:' \
+  '--yarn-beta-fast[YaRN low correction dim]:value:' \
+  '(--no-kv-offload -nkvo){-kvo,--kv-offload}[Enable KV cache offloading]' \
+  '(--kv-offload -kvo){-nkvo,--no-kv-offload}[Disable KV cache offloading]' \
+  '(--no-repack -nr)--repack[Enable weight repacking]' \
+  '(--repack){-nr,--no-repack}[Disable weight repacking]' \
+  '--no-host[Bypass host buffer]' \
+  {-ctk,--cache-type-k}'[KV cache data type for K]:type:('"${(j: :)cache_types}"')' \
+  {-ctv,--cache-type-v}'[KV cache data type for V]:type:('"${(j: :)cache_types}"')' \
+  {-dt,--defrag-thold}'[KV cache defragmentation threshold (deprecated)]:threshold:' \
+  '--mlock[Force system to keep model in RAM]' \
+  '(--no-mmap)--mmap[Memory-map model (default)]' \
+  '(--mmap)--no-mmap[Disable memory-mapping model]' \
+  '(--no-direct-io -ndio){-dio,--direct-io}[Use DirectIO]' \
+  '(--direct-io -dio){-ndio,--no-direct-io}[Disable DirectIO]' \
+  '--numa[NUMA optimization]:type:(distribute isolate numactl)' \
+  {-dev,--device}'[Devices for offloading]:devices:' \
+  {-ot,--override-tensor}'[Override tensor buffer type]:pattern=type:' \
+  {-cmoe,--cpu-moe}'[Keep MoE weights in CPU]' \
+  {-ncmoe,--n-cpu-moe}'[Keep MoE weights of first N layers in CPU]:layers:' \
+  {-ngl,--gpu-layers,--n-gpu-layers}'[Layers to store in VRAM]:layers:' \
+  {-sm,--split-mode}'[Split model across GPUs]:mode:(none layer row)' \
+  {-ts,--tensor-split}'[Fraction per GPU]:proportions:' \
+  {-mg,--main-gpu}'[GPU for model/intermediate results]:index:' \
+  {-fit,--fit}'[Adjust args to fit device memory]:mode:(on off)' \
+  {-fitt,--fit-target}'[Target margin per device for --fit (MiB)]:margins:' \
+  {-fitc,--fit-ctx}'[Min ctx size for --fit]:size:' \
+  '--check-tensors[Check model tensor data for invalid values]' \
+  '--override-kv[Override model metadata]:key=type\:value:' \
+  '(--no-op-offload)--op-offload[Offload host tensor ops to device]' \
+  '(--op-offload)--no-op-offload[Do not offload host tensor ops]' \
+  '*--lora[Path to LoRA adapter]:adapter:_files -g "*.gguf"' \
+  '*--lora-scaled[LoRA adapter with scaling]:fname\:scale:' \
+  '*--control-vector[Add a control vector]:file:_files' \
+  '*--control-vector-scaled[Control vector with scaling]:fname\:scale:' \
+  '--control-vector-layer-range[Layer range for control vectors]:start end:' \
+  {-m,--model}'[Model path]:model file:_files -g "*.gguf"' \
+  {-mu,--model-url}'[Model download URL]:url:' \
+  {-dr,--docker-repo}'[Docker Hub model repository]:repo:' \
+  {-hf,-hfr,--hf-repo}'[Hugging Face model repository]:user/model\[:quant\]:' \
+  {-hfd,-hfrd,--hf-repo-draft}'[HF repo for draft model]:user/model\[:quant\]:' \
+  {-hff,--hf-file}'[Hugging Face model file]:file:' \
+  {-hfv,-hfrv,--hf-repo-v}'[HF repo for vocoder model]:user/model\[:quant\]:' \
+  {-hffv,--hf-file-v}'[HF file for vocoder model]:file:' \
+  {-hft,--hf-token}'[Hugging Face access token]:token:' \
+  '--log-disable[Disable logging]' \
+  '--log-file[Log to file]:file:_files' \
+  '--log-colors[Colored logging]:mode:(on off auto)' \
+  {-v,--verbose,--log-verbose}'[Set verbosity to infinity]' \
+  '--offline[Offline mode, prevent network access]' \
+  {-lv,--verbosity,--log-verbosity}'[Verbosity threshold]:level:((0\:generic 1\:error 2\:warning 3\:info 4\:debug))' \
+  '--log-prefix[Enable prefix in log messages]' \
+  '--log-timestamps[Enable timestamps in log messages]' \
+  {-ctkd,--cache-type-k-draft}'[KV cache type K for draft]:type:('"${(j: :)cache_types}"')' \
+  {-ctvd,--cache-type-v-draft}'[KV cache type V for draft]:type:('"${(j: :)cache_types}"')' \
+  '--samplers[Samplers for generation]:samplers:' \
+  {-s,--seed}'[RNG seed (-1=random)]:seed:' \
+  '--sampler-seq[Simplified sampler sequence]:sequence:' \
+  '--sampling-seq[Simplified sampler sequence]:sequence:' \
+  '--ignore-eos[Ignore end of stream token]' \
+  '--temp[Temperature]:temperature:' \
+  '--temperature[Temperature]:temperature:' \
+  '--top-k[Top-k sampling (0=disabled)]:k:' \
+  '--top-p[Top-p sampling (1.0=disabled)]:p:' \
+  '--min-p[Min-p sampling (0.0=disabled)]:p:' \
+  '--top-nsigma[Top-n-sigma sampling]:n:' \
+  '--top-n-sigma[Top-n-sigma sampling]:n:' \
+  '--xtc-probability[XTC probability (0.0=disabled)]:probability:' \
+  '--xtc-threshold[XTC threshold]:threshold:' \
+  '--typical[Locally typical sampling p]:p:' \
+  '--typical-p[Locally typical sampling p]:p:' \
+  '--repeat-last-n[Tokens for repeat penalty]:n:' \
+  '--repeat-penalty[Repeat penalty]:penalty:' \
+  '--presence-penalty[Presence penalty]:penalty:' \
+  '--frequency-penalty[Frequency penalty]:penalty:' \
+  '--dry-multiplier[DRY sampling multiplier]:multiplier:' \
+  '--dry-base[DRY sampling base]:base:' \
+  '--dry-allowed-length[DRY allowed length]:length:' \
+  '--dry-penalty-last-n[DRY penalty last n tokens]:n:' \
+  '*--dry-sequence-breaker[DRY sequence breaker]:string:' \
+  '--adaptive-target[Adaptive-p target probability]:probability:' \
+  '--adaptive-decay[Adaptive-p decay rate]:rate:' \
+  '--dynatemp-range[Dynamic temperature range]:range:' \
+  '--dynatemp-exp[Dynamic temperature exponent]:exponent:' \
+  '--mirostat[Mirostat sampling]:mode:(0 1 2)' \
+  '--mirostat-lr[Mirostat learning rate]:eta:' \
+  '--mirostat-ent[Mirostat target entropy]:tau:' \
+  {-l,--logit-bias}'[Logit bias]:token_id(+/-)bias:' \
+  '--grammar[BNF-like grammar]:grammar:' \
+  '--grammar-file[Grammar file]:file:_files' \
+  {-j,--json-schema}'[JSON schema]:schema:' \
+  {-jf,--json-schema-file}'[JSON schema file]:file:_files -g "*.json"' \
+  {-bs,--backend-sampling}'[Enable backend sampling (experimental)]' \
+  {-lcs,--lookup-cache-static}'[Static lookup cache path]:file:_files' \
+  {-lcd,--lookup-cache-dynamic}'[Dynamic lookup cache path]:file:_files' \
+  {-ctxcp,--ctx-checkpoints,--swa-checkpoints}'[Max context checkpoints per slot]:count:' \
+  {-cpent,--checkpoint-every-n-tokens}'[Checkpoint interval in tokens]:tokens:' \
+  {-cram,--cache-ram}'[Max cache size in MiB]:size:' \
+  '(--no-kv-unified -no-kvu){-kvu,--kv-unified}[Use unified KV buffer]' \
+  '(--kv-unified -kvu){-no-kvu,--no-kv-unified}[Disable unified KV buffer]' \
+  '(--no-context-shift)--context-shift[Enable context shift on infinite generation]' \
+  '(--context-shift)--no-context-shift[Disable context shift]' \
+  {-r,--reverse-prompt}'[Halt at prompt]:prompt:' \
+  {-sp,--special}'[Enable special tokens output]' \
+  '(--no-warmup)--warmup[Warmup with empty run (default)]' \
+  '(--warmup)--no-warmup[Skip warmup]' \
+  '--spm-infill[Use Suffix/Prefix/Middle pattern for infill]' \
+  '--pooling[Pooling type for embeddings]:type:(none mean cls last rank)' \
+  {-np,--parallel}'[Number of server slots]:slots:' \
+  '(--no-cont-batching -nocb){-cb,--cont-batching}[Enable continuous batching]' \
+  '(--cont-batching -cb){-nocb,--no-cont-batching}[Disable continuous batching]' \
+  {-mm,--mmproj}'[Multimodal projector file]:file:_files -g "*.gguf"' \
+  {-mmu,--mmproj-url}'[Multimodal projector URL]:url:' \
+  '(--no-mmproj --no-mmproj-auto)--mmproj-auto[Auto-use multimodal projector]' \
+  '(--mmproj-auto){--no-mmproj,--no-mmproj-auto}[Disable auto multimodal projector]' \
+  '(--no-mmproj-offload)--mmproj-offload[GPU offload for multimodal projector]' \
+  '(--mmproj-offload)--no-mmproj-offload[Disable GPU offload for multimodal projector]' \
+  '--image-min-tokens[Min tokens per image]:tokens:' \
+  '--image-max-tokens[Max tokens per image]:tokens:' \
+  {-otd,--override-tensor-draft}'[Override tensor type for draft model]:pattern=type:' \
+  {-cmoed,--cpu-moe-draft}'[Keep draft model MoE weights in CPU]' \
+  {-ncmoed,--n-cpu-moe-draft}'[Keep draft MoE first N layers in CPU]:layers:' \
+  {-a,--alias}'[Model name aliases]:aliases:' \
+  '--tags[Model tags]:tags:' \
+  '--host[Listen address]:host:_hosts' \
+  '--port[Listen port]:port:' \
+  '--path[Static files path]:path:_directories' \
+  '--api-prefix[API prefix path]:prefix:' \
+  '--webui-config[WebUI default settings JSON]:json:' \
+  '--webui-config-file[WebUI settings JSON file]:file:_files -g "*.json"' \
+  '(--no-webui-mcp-proxy)--webui-mcp-proxy[Enable MCP CORS proxy (experimental)]' \
+  '(--webui-mcp-proxy)--no-webui-mcp-proxy[Disable MCP CORS proxy]' \
+  '(--no-webui)--webui[Enable Web UI (default)]' \
+  '(--webui)--no-webui[Disable Web UI]' \
+  '(--embeddings)--embedding[Restrict to embedding use case]' \
+  '(--embedding)--embeddings[Restrict to embedding use case]' \
+  '(--reranking)--rerank[Enable reranking endpoint]' \
+  '(--rerank)--reranking[Enable reranking endpoint]' \
+  '--api-key[API key for authentication]:key:' \
+  '--api-key-file[File containing API keys]:file:_files' \
+  '--ssl-key-file[SSL private key PEM file]:file:_files -g "*.pem"' \
+  '--ssl-cert-file[SSL certificate PEM file]:file:_files -g "*.pem"' \
+  '--chat-template-kwargs[Additional template params JSON]:json:' \
+  {-to,--timeout}'[Server read/write timeout (seconds)]:seconds:' \
+  '--threads-http[Threads for HTTP requests]:threads:' \
+  '(--no-cache-prompt)--cache-prompt[Enable prompt caching (default)]' \
+  '(--cache-prompt)--no-cache-prompt[Disable prompt caching]' \
+  '--cache-reuse[Min chunk size for cache reuse via KV shifting]:size:' \
+  '--metrics[Enable Prometheus metrics endpoint]' \
+  '--props[Enable changing global properties via POST /props]' \
+  '(--no-slots)--slots[Expose slots monitoring endpoint (default)]' \
+  '(--slots)--no-slots[Disable slots monitoring endpoint]' \
+  '--slot-save-path[Path to save slot KV cache]:path:_directories' \
+  '--media-path[Directory for local media files]:path:_directories' \
+  '--models-dir[Directory with models for router]:path:_directories' \
+  '--models-preset[INI file with model presets]:file:_files -g "*.ini"' \
+  '--models-max[Max simultaneous models for router]:count:' \
+  '(--no-models-autoload)--models-autoload[Auto-load models in router (default)]' \
+  '(--models-autoload)--no-models-autoload[Disable auto-loading models]' \
+  '(--no-jinja)--jinja[Use jinja template engine (default)]' \
+  '(--jinja)--no-jinja[Disable jinja template engine]' \
+  '--reasoning-format[Reasoning format]:format:(none deepseek deepseek-legacy auto)' \
+  {-rea,--reasoning}'[Enable reasoning/thinking]:mode:(on off auto)' \
+  '--reasoning-budget[Token budget for thinking]:tokens:' \
+  '--reasoning-budget-message[Message when reasoning budget exhausted]:message:' \
+  '--chat-template[Custom jinja chat template]:template:(bailing bailing-think bailing2 chatglm3 chatglm4 chatml command-r deepseek deepseek2 deepseek3 exaone-moe exaone3 exaone4 falcon3 gemma gigachat glmedge gpt-oss granite grok-2 hunyuan-dense hunyuan-moe kimi-k2 llama2 llama2-sys llama2-sys-bos llama2-sys-strip llama3 llama4 megrez minicpm mistral-v1 mistral-v3 mistral-v3-tekken mistral-v7 mistral-v7-tekken monarch openchat orion pangu-embedded phi3 phi4 rwkv-world seed_oss smolvlm solar-open vicuna vicuna-orca yandex zephyr)' \
+  '--chat-template-file[Custom jinja chat template file]:file:_files' \
+  '(--no-skip-chat-parsing)--skip-chat-parsing[Force pure content parser]' \
+  '(--skip-chat-parsing)--no-skip-chat-parsing[Use template-based parsing]' \
+  '(--no-prefill-assistant)--prefill-assistant[Prefill assistant response (default)]' \
+  '(--prefill-assistant)--no-prefill-assistant[Disable assistant prefilling]' \
+  {-sps,--slot-prompt-similarity}'[Slot prompt similarity threshold]:similarity:' \
+  '--lora-init-without-apply[Load LoRA adapters without applying]' \
+  '--sleep-idle-seconds[Seconds idle before sleep (-1=disabled)]:seconds:' \
+  {-td,--threads-draft}'[Threads for draft generation]:threads:' \
+  {-tbd,--threads-batch-draft}'[Threads for draft batch processing]:threads:' \
+  '--draft[Tokens to draft for speculative decoding]:tokens:' \
+  '--draft-max[Tokens to draft for speculative decoding]:tokens:' \
+  '--draft-n[Tokens to draft for speculative decoding]:tokens:' \
+  '--draft-min[Min draft tokens]:tokens:' \
+  '--draft-n-min[Min draft tokens]:tokens:' \
+  '--draft-p-min[Min speculative decoding probability]:probability:' \
+  {-cd,--ctx-size-draft}'[Context size for draft model]:size:' \
+  {-devd,--device-draft}'[Devices for draft model offloading]:devices:' \
+  {-ngld,--gpu-layers-draft,--n-gpu-layers-draft}'[Draft model layers in VRAM]:layers:' \
+  {-md,--model-draft}'[Draft model path]:file:_files -g "*.gguf"' \
+  '--spec-replace[Translate string for draft compatibility]:target draft:' \
+  '--spec-type[Speculative decoding type]:type:(none ngram-cache ngram-simple ngram-map-k ngram-map-k4v ngram-mod)' \
+  '--spec-ngram-size-n[Ngram lookup size N]:size:' \
+  '--spec-ngram-size-m[Ngram draft size M]:size:' \
+  '--spec-ngram-min-hits[Min hits for ngram-map]:hits:' \
+  {-mv,--model-vocoder}'[Vocoder model for audio generation]:file:_files -g "*.gguf"' \
+  '--tts-use-guide-tokens[Use guide tokens for TTS]' \
+  '--embd-gemma-default[Use default EmbeddingGemma model]' \
+  '--fim-qwen-1.5b-default[Use default Qwen 2.5 Coder 1.5B]' \
+  '--fim-qwen-3b-default[Use default Qwen 2.5 Coder 3B]' \
+  '--fim-qwen-7b-default[Use default Qwen 2.5 Coder 7B]' \
+  '--fim-qwen-7b-spec[Use Qwen 2.5 Coder 7B + 0.5B draft]' \
+  '--fim-qwen-14b-spec[Use Qwen 2.5 Coder 14B + 0.5B draft]' \
+  '--fim-qwen-30b-default[Use default Qwen 3 Coder 30B]' \
+  '--gpt-oss-20b-default[Use gpt-oss-20b]' \
+  '--gpt-oss-120b-default[Use gpt-oss-120b]' \
+  '--vision-gemma-4b-default[Use Gemma 3 4B QAT]' \
+  '--vision-gemma-12b-default[Use Gemma 3 12B QAT]' \
+  && return 0
