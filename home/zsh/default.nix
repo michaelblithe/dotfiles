@@ -30,6 +30,9 @@
     // lib.optionalAttrs (pkgs.stdenv.isDarwin) {
       nixswitch = "darwin-rebuild switch --flake ~/Documents/dotfiles#$(hostname)";
     };
+    initExtraBeforeCompInit = ''
+      fpath=(~/Documents/dotfiles/scripts $fpath)
+    '';
     initExtra = ''
       source ~/Documents/dotfiles/scripts/llama-cpp.sh
     '';
