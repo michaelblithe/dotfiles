@@ -5,37 +5,23 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "llama-server (local)",
       "options": {
-        "baseURL": "http://127.0.0.1:8001/v1"
+        "baseURL": "http://house-of-wind:8001/v1"
       },
       "models": {
-        "unsloth/Qwen3-Coder-Next-GGUF:MXFP4_MOE": {
-          "name": "Qwen3-Coder Next",
+        "unsloth/Qwen3.5-27B-GGUF:UD-Q4_K_XL": {
+          "name": "Qwen3.5-27B",
           "limit": {
-            "context": 200000,
+            "context": 150000,
             "output": 65536
           }
         },
-        "unsloth/gpt-oss-120b-GGUF:Q4_K_M": {
-          "name": "GPT OSS 120B",
+        "bartowski/Qwen_Qwen3.5-35B-A3B-GGUF:Q8_0": {
+          "name": "Qwen3.5-35B-A3B",
           "limit": {
-            "context": 128000,
+            "context": 256000,
             "output": 65536
           }
-        },
-        "noctrex/GLM-4.7-Flash-MXFP4_MOE-GGUF:MXFP4_MOE": {
-          "name": "GLM-4.7-Flash",
-          "limit": {
-            "context": 128000,
-            "output": 65536
-          }
-        },
-        "unsloth/MiniMax-M2.5-GGUF:Q3_K_XL": {
-          "name": "MiniMax-M2.5",
-          "limit": {
-            "context": 64000,
-            "output": 65536
-          }
-        },
+        }
       }
     }
   },
