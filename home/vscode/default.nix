@@ -2,7 +2,7 @@
 
 {
   home.packages = [ pkgs.nixpkgs-fmt ];
-  catppuccin.vscode = {
+  catppuccin.vscode.profiles.default = {
     enable = true;
     flavor = "mocha";
   };
@@ -39,7 +39,7 @@
         "nix.serverSettings" = {
           "nil" = {
             "formatting" = {
-              "command" = [ "nixpkgs-fmt" ];
+              "command" = [ "nixfmt" ];
             };
           };
         };
@@ -62,6 +62,8 @@
           "~/.config/opencode/skills" = true;
         };
         "claudeCode.preferredLocation" = "panel";
+        "window.commandCenter" = false;
+        "workbench.navigationControl.enabled" = false;
       };
     };
   };
