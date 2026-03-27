@@ -2,7 +2,7 @@
 
 {
   home.packages = [ pkgs.nixpkgs-fmt ];
-  catppuccin.vscode = {
+  catppuccin.vscode.profiles.default = {
     enable = true;
     flavor = "mocha";
   };

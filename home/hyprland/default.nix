@@ -247,16 +247,18 @@
   # Notification daemon
   services.mako = {
     enable = true;
-    defaultTimeout = 5000;
-    borderRadius = 8;
-    borderSize = 2;
-    padding = "12";
-    margin = "12";
-    backgroundColor = "#191919ee";
-    textColor = "#ffffff";
-    borderColor = "#ffffff33";
-    layer = "overlay";
-    font = "JetBrainsMono 11";
+    settings = {
+      default-timeout = 5000;
+      border-radius = 8;
+      border-size = 2;
+      padding = "12";
+      margin = "12";
+      background-color = "#191919ee";
+      text-color = "#ffffff";
+      border-color = "#ffffff33";
+      layer = "overlay";
+      font = "JetBrainsMono 11";
+    };
   };
 
   services.hypridle = {

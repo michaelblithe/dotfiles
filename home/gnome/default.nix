@@ -11,6 +11,7 @@
   # Catppuccin Mocha GTK theme
   gtk = {
     enable = true;
+    gtk4.theme = null;
     theme = {
       name = "catppuccin-mocha-blue-standard";
       package = pkgs.catppuccin-gtk.override {
