@@ -63,9 +63,9 @@
         };
 
         battery = {
-          format = "{icon} {time}";
-          format-discharging = "{icon} {time}";
-          format-charging = "{icon} {time}";
+          format = "{icon} {percent}%";
+          format-discharging = "{icon} {percent}%";
+          format-charging = "{icon} {percent}%";
           format-icons = [
             ""
             ""
