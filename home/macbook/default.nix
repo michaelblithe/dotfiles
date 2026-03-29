@@ -11,6 +11,8 @@
     # ../vscode
     ../opencode
     # ../claude-code
+    ../zathura
+    ../tmux
     catppuccin.homeModules.catppuccin
   ];
 }
