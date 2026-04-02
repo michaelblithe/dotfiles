@@ -21,9 +21,9 @@
     ../chrome
     ../direnv
     ../discord
-    ../calibre  # disabled: broken build in current nixpkgs (qmake missing)
+    ../calibre  
     ../opencode
-    ../claude-code
+    # ../claude-code
     ../zathura
     ../tmux
     ../spotify

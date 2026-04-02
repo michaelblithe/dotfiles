@@ -1,4 +1,9 @@
-{ config, catppuccin, pkgs, ... }:
+{
+  config,
+  catppuccin,
+  pkgs,
+  ...
+}:
 
 {
   home.packages = [ pkgs.nixpkgs-fmt ];
@@ -19,7 +24,8 @@
         saoudrizwan.claude-dev
         jnoortheen.nix-ide
         vscodevim.vim
-        anthropic.claude-code
+        theqtcompany.qt-qml
+        # anthropic.claude-code
         mkhl.direnv
         dbaeumer.vscode-eslint
         editorconfig.editorconfig
