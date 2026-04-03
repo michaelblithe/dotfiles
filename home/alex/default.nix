@@ -28,7 +28,7 @@
     ../discord
     ../calibre
     ../opencode
-    ../claude-code
+    #../claude-code
     ../zathura
     ../tmux
     ../spotify
