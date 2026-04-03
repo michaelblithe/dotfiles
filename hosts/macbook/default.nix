@@ -20,7 +20,7 @@
   nix.settings.auto-optimise-store = true;
   nix.gc = {
     automatic = true;
-    dates = "weekly";
+    interval = { Weekday = 0; Hour = 0; Minute = 0; }; # Weekly on Sunday
     options = "--delete-older-than 7d";
   };
 
