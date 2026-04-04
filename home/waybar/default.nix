@@ -7,8 +7,8 @@
 
 let
   vpnScript = pkgs.writeShellScript "waybar-vpn" ''
-    status=$(protonvpn-cli s 2>/dev/null)
-    if echo "$status" | grep -q "Connected"; then
+    status=$(nmcli connection show --active | grep pvpn 2>/dev/null)
+    if [ -n "$status" ]; then
       server=$(echo "$status" | grep "Server:" | awk '{print $2}')
       echo '{"text":"󰌾","tooltip":"VPN: '"$server"'","class":"connected"}'
     else
@@ -52,7 +52,22 @@ in
 
         "hyprland/workspaces" = {
           on-click = "activate";
-          format = "{name}";
+          format = "{name}:{windows}";
+          format-windows-separator = ":";
+          "window-rewrite-default" = "";
+          "window-rewrite" = {
+            "title<.*youtube.*>" = ""; # Windows whose titles contain "youtube"
+            "class<firefox>" = ""; # Windows whose classes are "firefox"
+            "class<firefox> title<.*github.*>" = ""; # Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
+            "foot" = ""; # Windows that contain "foot" in either class or title. For optimization reasons, it will only match against a title if at least one other window explicitly matches against a title.
+            "code" = "󰨞";
+            "discord" = "";
+            "kitty" = "";
+            "zathura" = "󰌱";
+            "calibri" = "";
+            "spotify" = "";
+            "title<.* - (.*) - VSCodium>" = "codium $1"; # captures part of the window title and formats it into output
+          };
         };
 
         "hyprland/window" = {
@@ -81,7 +96,11 @@ in
           format = "{icon} {volume}%";
           format-muted = "󰝟 muted";
           format-icons = {
-            default = [ "󰕿" "󰖀" "󰕾" ];
+            default = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
           };
           scroll-step = 5;
           on-click = "pamixer -t";
@@ -90,7 +109,7 @@ in
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = "";
+            activated = "󰅶";
             deactivated = "󰾪";
           };
           tooltip-format-activated = "Caffeine on";
@@ -100,7 +119,19 @@ in
         battery = {
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
-          format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = [
+            "󰂎"
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
           states = {
             warning = 20;
             critical = 10;
