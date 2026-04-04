@@ -90,7 +90,10 @@ in
         ProtectHome = "read-only";
         NoNewPrivileges = true;
         ReadWritePaths = [ "/var/lib/llama-server" ];
-        ReadOnlyPaths = [ "/home/alex/.cache/huggingface" ];
+        ReadOnlyPaths = [ 
+          "/home/alex/.cache/huggingface" 
+          "/var/models"
+        ];
       };
 
       script = ''
