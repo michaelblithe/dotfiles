@@ -33,6 +33,7 @@
     ../tmux
     ../spotify
     ../lmstudio
+    ../helix
     catppuccin.homeModules.catppuccin
   ];
 }
