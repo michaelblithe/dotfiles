@@ -34,6 +34,7 @@
     ../spotify
     ../lmstudio
     ../helix
+    ../qute-browser
     catppuccin.homeModules.catppuccin
   ];
 }

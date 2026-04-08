@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "ags run app.ts"
+  },
   "dependencies": {
     "ags": "*",
     "gnim": "*"
