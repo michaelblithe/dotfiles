@@ -111,6 +111,7 @@
           ];
 
       exec-once = [
+        "quickshell"
         "waybar"
         "hypridle"
         "protonvpn-gui"
