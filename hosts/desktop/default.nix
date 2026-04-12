@@ -11,6 +11,7 @@
     ../../modules/nvidia-power-limit
     ../../modules/openssh
     ../../modules/tailscale
+    ../../modules/steam
     ../../modules/rustdesk
   ];
   
@@ -72,6 +73,7 @@ boot.kernelParams = [
     rocmPackages.rocm-smi
     rocmPackages.clr
     llama-cpp
+    rustdesk-flutter
   ];
 
   # Allow Open WebUI (port 3000) on Tailscale only
