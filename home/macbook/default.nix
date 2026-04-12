@@ -14,6 +14,7 @@
     ../helix
     ../zathura
     ../tmux
+    ../qute-browser
     catppuccin.homeModules.catppuccin
   ];
 }
