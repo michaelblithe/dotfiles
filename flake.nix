@@ -80,13 +80,6 @@
           nixpkgs.overlays = [
             nix-vscode-extensions.overlays.default
             nur.overlays.default
-            (_final: prev: {
-              claude-code =
-                (import nixpkgs-stable {
-                  inherit (prev.stdenv.hostPlatform) system;
-                  config.allowUnfree = true;
-                }).claude-code;
-            })
           ];
         };
     in
