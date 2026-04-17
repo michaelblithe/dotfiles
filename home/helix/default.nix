@@ -11,6 +11,9 @@
         "g"."g" = "goto_file_start";
         "G" = "goto_file_end";
         "a" = "append_mode";
+        "x" = "delete_char_forward";
+        "y"."y" = ["extend_line_below" "yank"];
+        "d"."d" = ["extend_line_below" "delete_selection"];
       };
     };
   };
