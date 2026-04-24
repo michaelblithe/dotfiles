@@ -77,7 +77,7 @@
         disable_splash_rendering = true;
         animate_manual_resizes = true;
         animate_mouse_windowdragging = true;
-        vfr = true;
+        #vfr = true;
       };
 
       # Dwindle layout settings
@@ -99,6 +99,7 @@
           [
             ",preferred,auto,1"
             "eDP-1,2256x1504@60,0x0,1.33"
+            "unknown-1,2256x1504@60,0x0,1.33"
           ]
         else if hostname == "house-of-wind" then
           [
