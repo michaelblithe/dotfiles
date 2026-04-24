@@ -6,8 +6,8 @@ description: >
   "look into this", "how does X work in Y", "search for", etc.
   Always use this instead of guessing from memory for API or framework questions.
 tools:
-  - mcp__context7__query-docs
-model: haiku
+  write: false
+  edit: false
 maxTurns: 3
 ---
 
