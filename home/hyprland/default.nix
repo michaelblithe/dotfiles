@@ -77,7 +77,6 @@
         disable_splash_rendering = true;
         animate_manual_resizes = true;
         animate_mouse_windowdragging = true;
-        #vfr = true;
       };
 
       # Dwindle layout settings
