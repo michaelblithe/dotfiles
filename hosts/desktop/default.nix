@@ -44,6 +44,7 @@ boot.kernelParams = [
   # hardware.amdgpu.initrd.enable = true;
   hardware.graphics.enable = true;
   virtualisation.podman.enableNvidia = true;
+  hardware.nvidia-container-toolkit.enable = true;
 
   hardware.nvidia = {
     # Modesetting is required

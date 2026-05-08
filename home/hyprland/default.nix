@@ -98,6 +98,7 @@
           [
             ",preferred,auto,1"
             "eDP-1,2256x1504@60,0x0,1.33"
+            "unknown-1,2256x1504@60,0x0,1.33"
           ]
         else if hostname == "house-of-wind" then
           [
