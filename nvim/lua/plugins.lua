@@ -11,4 +11,4 @@ vim.pack.add({
 
 require("mini.pick").setup()
 require("mini.completion").setup()
-
+require("mini.files").setup()

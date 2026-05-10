@@ -1,3 +1,4 @@
+vim.keymap.set('n', "<leader>fl", ":lua MiniFiles.open()<CR>", {silent = true })
 vim.keymap.set('n', "<leader>ff", ":Pick files <CR>", { silent = true })
 --- Format
 vim.keymap.set('n', '<leader>lf', ':lua vim.lsp.buf.format() <CR>', { silent = true })
@@ -28,4 +29,4 @@ vim.keymap.set('i', '<Tab>', function()
 end, { expr = true })
 
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
-vim.keymap.set('n', '<leader>t', ':botright split | terminal<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>t', ':botright 10split | terminal<CR>', { noremap = true })
