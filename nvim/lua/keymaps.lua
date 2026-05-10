@@ -8,6 +8,8 @@ vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { silent = true })
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { silent = true })
 vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { silent = true })
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, { silent = true })
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
+
 
 -- Info / docs
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { silent = true })
@@ -24,3 +26,6 @@ vim.keymap.set('i', '<Tab>', function()
   end
   return '<Tab>'
 end, { expr = true })
+
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
+vim.keymap.set('n', '<leader>t', ':botright split | terminal<CR>', { noremap = true })

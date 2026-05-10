@@ -24,4 +24,12 @@
     options = "--delete-older-than 7d";
   };
 
+environment.systemPackages = (
+    with pkgs;
+    [
+      httpie
+      nil
+
+    ]);
+
 }
