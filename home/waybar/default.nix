@@ -14,7 +14,7 @@
         ];
 
         modules-center = [
-          "hyprland/window"
+          "clock"
         ];
 
         modules-right = [
@@ -22,7 +22,6 @@
           "pulseaudio"
           "network"
           "idle_inhibitor"
-          "clock"
         ];
 
         # Module configurations
