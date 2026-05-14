@@ -30,7 +30,8 @@
     shell = pkgs.zsh;
     # Use an initial plaintext password for first boot; change it after logging in.
     initialPassword = "changeme";
-  }; services.clamav = {
+  };
+  services.clamav = {
     daemon.enable = true;
     updater.enable = true;
   };
@@ -60,6 +61,7 @@
       fastfetch
       btop
       lazydocker
+      lazygit
       lftp
       unzip
       jq
