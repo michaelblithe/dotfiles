@@ -1,6 +1,4 @@
 {
-  config,
-  inputs,
   pkgs,
   lib,
   hostname ? "",
@@ -17,6 +15,7 @@
     wl-clipboard
     cliphist
     lxqt.lxqt-policykit
+    networkmanagerapplet
   ];
 
   wayland.windowManager.hyprland = {
@@ -107,6 +106,7 @@
         "wl-paste --type image --watch cliphist store"
         # Polkit authentication agent
         "lxqt-policykit-agent"
+        "sleep 3 && nm-applet"
       ] ++ lib.optionals (hostname == "framework") [
         "wlsunset -l 40.7 -L -74.0"
       ];
