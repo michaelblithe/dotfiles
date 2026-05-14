@@ -78,7 +78,7 @@ in
   imports = [
     ../../modules/firejail
     #../../modules/ai
-    # ../../modules/wireguard
+    ../../modules/wireguard
   ];
 
   environment.systemPackages =
