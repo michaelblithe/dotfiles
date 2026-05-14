@@ -1,4 +1,4 @@
-{ pkgs, lib, ...}:
+{ pkgs, lib, ... }:
 
 {
   networking.hostName = "framework";
@@ -30,7 +30,6 @@
   # Network Manager with WiFi optimizations
   networking.networkmanager = {
     enable = true;
-    wifi.powersave = true;
     wifi.scanRandMacAddress = true;
   };
 
@@ -118,13 +117,31 @@
   };
 
   # Font rendering for HiDPI
-  fonts.fontconfig.subpixel.rgba = "rgb";
+  fonts.fontconfig = {
+    antialias = true;
+    hinting.enable = true;
+    hinting.style = "slight";
+    subpixel.rgba = "rgb";
+  };
+
+  # Trackpad feel
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      accelProfile = "adaptive";
+      naturalScrolling = true;
+      tapping = true;
+    };
+  };
 
   # XDG portal for file pickers, screen sharing, etc.
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = [ "hyprland" "gtk" ];
+    config.common.default = [
+      "hyprland"
+      "gtk"
+    ];
   };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -136,8 +153,11 @@
     acpi
     nvme-cli
     lm_sensors
+    bluetuith # Bluetooth TUI
   ];
 
   home-manager.users.alex.home.stateVersion = "25.11";
   system.stateVersion = "25.11";
+
+  services.ai-open-webui.enable = true;
 }

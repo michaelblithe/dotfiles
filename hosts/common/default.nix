@@ -1,4 +1,4 @@
-{ pkgs, inputs, ...}:
+{ pkgs, inputs, ... }:
 
 let
   unstable = import inputs.nixpkgs-unstable {
@@ -8,13 +8,15 @@ let
 in
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   time.timeZone = "America/New_York";
 
   users.users.root = {
     initialPassword = "changeme";
   };
-
 
   # Needed for proton VPN to work properly
   networking.firewall.checkReversePath = false;
@@ -23,7 +25,12 @@ in
 
   users.users.alex = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "podman" "docker" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "podman"
+      "docker"
+    ];
     shell = pkgs.zsh;
     # Use an initial plaintext password for first boot; change it after logging in.
     initialPassword = "changeme";
@@ -47,7 +54,8 @@ in
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
   virtualisation.podman.enable = true;
   # virtualisation.podman.dockerCompat = true;
@@ -64,44 +72,47 @@ in
 
   imports = [
     ../../modules/firejail
-    ../../modules/wireguard
+    ../../modules/ai
+    #../../modules/wireguard
   ];
 
-  environment.systemPackages = (with pkgs; [
-    vim
-    git
-    wget
-    curl
-    networkmanager
-    neofetch
-    htop
-    podman
-    podman-compose
-    docker-compose
-    vscode
-    neovim
-    gh
-    nixfmt
-    nil
-    spotify
-    protonvpn-gui
-    wireguard-tools
-    age
-    sops
-    clamav
-    impala
-    bluetui
-    fastfetch
-    btop
-    lazydocker
-    opencode
-    lftp
-    unzip
-    python3
-    discordo
-  ]) ++ [
-    unstable.lmstudio
-    unstable.claude-code
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      vim
+      git
+      wget
+      curl
+      networkmanager
+      neofetch
+      htop
+      podman
+      podman-compose
+      docker-compose
+      vscode
+      neovim
+      gh
+      nixfmt
+      nil
+      spotify
+      protonvpn-gui
+      wireguard-tools
+      age
+      sops
+      clamav
+      impala
+      bluetui
+      fastfetch
+      btop
+      lazydocker
+      opencode
+      lftp
+      unzip
+      python3
+      discordo
+    ])
+    ++ [
+      unstable.lmstudio
+      unstable.claude-code
+    ];
 
 }
