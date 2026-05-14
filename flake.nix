@@ -9,15 +9,33 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, disko, nix-vscode-extensions,... }: 
 
+    let 
+      configuration = { pkgs, ... }: { 
+        nixpkgs.config.allowUnfree = true;
+        nixpkgs.overlays = [
+          nix-vscode-extensions.overlays.default
+        ];
+      };
+    in  {
     nixosConfigurations = {
       thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          { 
+            nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ]; 
+            nixpkgs.config.allowUnfree = true;
+          }
           disko.nixosModules.disko
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.alex = import ./home/alex;
+          }
           ./hosts/thinkpad
         ];
         specialArgs = { inherit self; };

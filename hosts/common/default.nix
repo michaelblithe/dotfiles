@@ -15,4 +15,21 @@
     password = "changeme";
   };
 
+  services.xserver.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+    wget
+    curl
+    networkmanager
+    neofetch
+    htop
+    podman
+    vscode
+    neovim
+  ];
+
 }
