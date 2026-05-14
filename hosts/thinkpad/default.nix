@@ -5,7 +5,7 @@
   imports = [
     ../common
     ./disko.nix
-
+    ../../modules/desktop
   ];
 
   # Hardware support

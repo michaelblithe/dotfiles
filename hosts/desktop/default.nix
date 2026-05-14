@@ -5,7 +5,8 @@
   imports = [
     ../common
     ./disko.nix
-    ../../modules/ai
+    ../../modules/ai/llama-cpp.nix
+    ../../modules/desktop
   ];
   
   hardware.enableRedistributableFirmware = true;

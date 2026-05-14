@@ -6,11 +6,19 @@
 }:
 
 {
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
   home.pointerCursor = {
     gtk.enable = true;
     name = "capitaine-cursors";
     package = pkgs.capitaine-cursors;
   };
+  
   home.packages = with pkgs; [
     brightnessctl
     pamixer

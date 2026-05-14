@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  programs.opencode = {
+    enable = true;
+  };
   xdg.configFile = {
     "opencode/opencode.json".source = ./opencode.json;
     "opencode/skills".source = ./skills;

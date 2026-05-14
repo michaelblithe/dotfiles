@@ -2,8 +2,6 @@
 
 {
   home.sessionVariables = {
-    # COMPOSE_DOCKER_CLI_BUILD = "1";
-    # DOCKER_BUILDKIT = "1";
     MOZ_ENABLE_WAYLAND = "1";
   };
   imports = [
@@ -25,5 +23,6 @@
     ../discord
     # ../calibre  # disabled: broken build in current nixpkgs (qmake missing)
     ../opencode
+    ../claude-code
   ];
 }
