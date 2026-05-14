@@ -30,13 +30,25 @@
             nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ]; 
             nixpkgs.config.allowUnfree = true;
           }
-          disko.nixosModules.disko
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.alex = import ./home/alex;
           }
           ./hosts/thinkpad
+        ];
+        specialArgs = { inherit self; };
+      };
+      framework = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          configuration
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.alex = import ./home/alex;
+          }
+          ./hosts/framework
         ];
         specialArgs = { inherit self; };
       };
