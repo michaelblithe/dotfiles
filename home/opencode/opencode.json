@@ -21,6 +21,20 @@
             "context": 256000,
             "output": 65536
           }
+        },
+        "unsloth/Qwen3-Coder-Next-GGUF:MXFP4_MOE": {
+          "name": "Qwen3-Coder-Next",
+          "limit": {
+            "context": 256000,
+            "output": 65536
+          }
+        },
+        "unsloth/gpt-oss-120b-GGUF:Q4_K_M": {
+          "name": "gpt-oss-120b",
+          "limit": {
+            "context": 128000,
+            "output": 65536
+          }
         }
       }
     }
@@ -34,5 +48,5 @@
       "type": "remote",
       "url": "https://mcp.grep.app"
     }
-  },
+  }
 }
