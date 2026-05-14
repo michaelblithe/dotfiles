@@ -6,6 +6,7 @@
 }:
 
 {
+  home.packages = [ pkgs.wakeonlan ];
   programs.zsh = {
     enable = true;
     oh-my-zsh = {
@@ -18,10 +19,12 @@
       claude-qwen-27 = "ANTHROPIC_BASE_URL=http://house-of-wind:8001 claude --model unsloth/Qwen3.5-27B-GGUF:UD-Q4_K_XL";
       claude-cascade = "ANTHROPIC_BASE_URL=http://house-of-wind:8001 claude --model mradermacher/Nemotron-Cascade-2-30B-A3B-GGUF:Q8_0";
       claude-cascade-fast = "ANTHROPIC_BASE_URL=http://house-of-wind:8001 claude --model Cascade-2-30B-A3B ";
+      wake-house-of-wind = "wakeonlan 9c:bf:0d:00:fe:fb";
       t = "$EDITOR ~/sync/everything/Life/Todo.md";
       nt = "$EDITOR ~/sync/everything/Life/$(date %m-%d-+%Y).md";
     }
     // lib.optionalAttrs (pkgs.stdenv.isLinux) {
+      sleep = "systemctl suspend";
       nixswitch = "sudo nixos-rebuild switch --flake ~/Documents/dotfiles#$(hostname)";
       vpn-up = "sudo systemctl stop wg-quick-wg1 2>/dev/null; sudo systemctl start wg-quick-wg0";
       vpn-up-2 = "sudo systemctl stop wg-quick-wg0 2>/dev/null; sudo systemctl start wg-quick-wg1";
