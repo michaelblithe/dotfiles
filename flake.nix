@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,6 +58,7 @@
       self,
       nixpkgs,
       nixpkgs-unstable,
+      nixpkgs-stable,
       home-manager,
       disko,
       hyprland,
@@ -78,6 +80,13 @@
           nixpkgs.overlays = [
             nix-vscode-extensions.overlays.default
             nur.overlays.default
+            (_final: prev: {
+              claude-code =
+                (import nixpkgs-stable {
+                  inherit (prev.stdenv.hostPlatform) system;
+                  config.allowUnfree = true;
+                }).claude-code;
+            })
           ];
         };
     in
