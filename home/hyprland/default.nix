@@ -77,7 +77,10 @@
         disable_splash_rendering = true;
         animate_manual_resizes = true;
         animate_mouse_windowdragging = true;
+<<<<<<< HEAD
         #vfr = true;
+=======
+>>>>>>> refs/rewritten/main-30
       };
 
       # Dwindle layout settings
@@ -121,13 +124,10 @@
         "wl-paste --type image --watch cliphist store"
         # Polkit authentication agent
         "lxqt-policykit-agent"
-<<<<<<< HEAD
-=======
         # Terminal scratchpad
         "[workspace special:terminal silent] kitty --class kitty-scratchpad"
       ]
       ++ lib.optionals (hostname == "framework") [
->>>>>>> 76bd855 (Ft ai (#3))
         "sleep 3 && nm-applet"
       ] ++ lib.optionals (hostname == "framework") [
         "wlsunset -l 40.7 -L -74.0"
