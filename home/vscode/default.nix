@@ -61,6 +61,7 @@
         "chat.agentSkillsLocations" = {
           "~/.config/opencode/skills" = true;
         };
+        "claudeCode.preferredLocation" = "panel";
       };
     };
   };
