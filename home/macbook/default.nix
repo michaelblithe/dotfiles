@@ -15,6 +15,7 @@
     ../zathura
     ../tmux
     ../qute-browser
+    ../rmpc
     catppuccin.homeModules.catppuccin
   ];
 }

@@ -35,6 +35,7 @@
     ../lmstudio
     ../helix
     ../qute-browser
+    ../rmpc
     catppuccin.homeModules.catppuccin
   ];
 }
