@@ -11,7 +11,10 @@ llama-cpp-input: final: prev: {
       }).overrideAttrs (old: {
         # Add OpenSSL for HTTPS/TLS support
         buildInputs = old.buildInputs or [] ++ [ prev.openssl ];
-        cmakeFlags = old.cmakeFlags or [] ++ [ (prev.lib.cmakeBool "LLAMA_OPENSSL" true) ];
+        cmakeFlags = old.cmakeFlags or [] ++ [
+          (prev.lib.cmakeBool "LLAMA_OPENSSL" true)
+          (prev.lib.cmakeBool "GGML_BACKEND_DL" true)
+        ];
       });
     in
     prev.symlinkJoin {
