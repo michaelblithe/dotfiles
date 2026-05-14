@@ -7,10 +7,10 @@
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
-  services.logind = {
-    lidSwitch = "suspend";
-    lidSwitchDocked = "suspend";
-    lidSwitchExternalPower = "suspend";
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchDocked = "suspend";
+    HandleLidSwitchExternalPower = "suspend";
   };
 
   services.xserver.enable = true;
