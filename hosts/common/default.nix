@@ -39,7 +39,7 @@
       wget
       curl
       networkmanager
-      neofetch
+      fastfetch
       htop
       age
       sops
