@@ -21,7 +21,7 @@
     ../chrome
     ../direnv
     ../discord
-    # ../calibre  # disabled: broken build in current nixpkgs (qmake missing)
+    ../calibre  # disabled: broken build in current nixpkgs (qmake missing)
     ../opencode
     ../claude-code
   ];
