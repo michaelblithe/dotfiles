@@ -5,8 +5,11 @@
   time.timeZone = "America/New_York";
 
   users.users.root = {
-    password = "changeme";
+    initialPassword = "changeme";
   };
+
+  # Needed for proton VPN to work properly
+  networking.firewall.checkReversePath = false;
 
   users.users.alex = {
     isNormalUser = true;
@@ -29,6 +32,10 @@
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
+  imports = [
+    ../../modules/firejail
+  ];
+
   environment.systemPackages = with pkgs; [
     vim
     git
@@ -43,7 +50,10 @@
     gh
     nixfmt
     nil
+    spotify
     claude-code
+    protonvpn-gui
+    wireguard-tools
   ];
 
 }
