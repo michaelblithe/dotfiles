@@ -11,6 +11,7 @@
     ../../modules/nvidia-power-limit
     ../../modules/openssh
     ../../modules/tailscale
+    ../../modules/rustdesk
   ];
   
   hardware.enableRedistributableFirmware = true;

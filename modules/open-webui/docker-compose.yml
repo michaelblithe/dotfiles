@@ -9,15 +9,14 @@ services:
       - OPENAI_API_KEY=not-needed
       - WEBUI_AUTH=false
       - ENABLE_OLLAMA_API=false
-      - TOOL_SERVER_CONNECTIONS=[{"url":"http://mcpo:8000","path":"/openapi.json","auth_type":"bearer","key":"","config":{"enable":true},"info":{"name":"Brave Search","description":"Web search via Brave"}}]
-      - OPEN_TERMINAL_CONNECTIONS=[{"url":"http://open-terminal:8000","auth_type":"bearer","key":"your-secret-key","config":{"enable":true},"info":{"name":"Terminal","description":"Shell access"}}]
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - TOOL_SERVER_CONNECTIONS=[{"url":"http://localhost:8000","path":"/openapi.json","auth_type":"bearer","key":"","config":{"enable":true},"info":{"name":"Brave Search","description":"Web search via Brave"}}]
+      - TERMINAL_SERVER_CONNECTIONS=[{"url":"http://localhost:8001","auth_type":"bearer","key":"your-secret-key","config":{"enable":true},"info":{"name":"Terminal","description":"Shell access"}}]
     volumes:
       - open-webui:/app/backend/data
     depends_on:
       - mcpo
       - open-terminal
+    network_mode: host
 
   mcpo:
     image: ghcr.io/open-webui/mcpo:main
@@ -27,16 +26,19 @@ services:
     volumes:
       - ./mcpo-config.json:/app/config/config.json
     command: mcpo --config /app/config/config.json
+    network_mode: host
 
   open-terminal:
     image: ghcr.io/open-webui/open-terminal
     container_name: open-terminal
     ports:
-      - "3001:8000"
+      - "3001:8001"
+    command: run --port 8001
     environment:
       - OPEN_TERMINAL_API_KEY=your-secret-key
     volumes:
       - open-terminal:/home/user
+    network_mode: host
 
 volumes:
   open-webui:
