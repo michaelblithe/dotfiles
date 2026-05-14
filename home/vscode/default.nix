@@ -1,14 +1,16 @@
-{ config, pkgs, ... }:
+{ config, catppuccin, pkgs, ... }:
 
 {
   home.packages = [ pkgs.nixpkgs-fmt ];
+  catppuccin.vscode = {
+    enable = true;
+    flavor = "mocha";
+  };
 
   programs.vscode = {
     enable = true;
     profiles.default = {
       extensions = with pkgs.vscode-marketplace; [
-        catppuccin.catppuccin-vsc
-        catppuccin.catppuccin-vsc-icons
         ftsamoyed.theme-pink-cat-boo
         ms-azuretools.vscode-containers
         ms-vscode-remote.remote-containers
@@ -41,7 +43,6 @@
             };
           };
         };
-        "workbench.colorTheme" = "Pink Cat Boo";
         "workbench.iconTheme" = "catppuccin-mocha";
         "redhat.telemetry.enabled" = false;
         "containers.containerClient" = "com.microsoft.visualstudio.containers.podman";
