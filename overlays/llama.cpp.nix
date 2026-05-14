@@ -1,10 +1,13 @@
+
 llama-cpp-input: final: prev: {
   llama-cpp = 
     let
-      llamaBase = prev.llama-cpp.override {
-        cudaSupport = true;
-        rocmSupport = false;
-        vulkanSupport = true;
+      # Call the llama.cpp package with our nixpkgs (which has allowUnfree = true)
+      llamaBase = prev.callPackage "${llama-cpp-input}/.devops/nix/package.nix" {
+        useCuda = true;
+        useRocm = true;
+        useVulkan = true;
+        llamaVersion = llama-cpp-input.rev or llama-cpp-input.shortRev or "git";
       };
     in
     prev.symlinkJoin {

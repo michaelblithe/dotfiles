@@ -37,7 +37,7 @@
 
   imports = [
     ../../modules/firejail
-    ../../modules/wireguard
+    # ../../modules/wireguard
   ];
 
   environment.systemPackages = with pkgs; [
