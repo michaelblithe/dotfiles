@@ -112,6 +112,7 @@ in
     # State directory for model cache
     systemd.tmpfiles.rules = [
       "d /var/lib/llama-server 0755 llama-server llama-server -"
+      "d /var/models 0755 llama-server llama-server -"
     ];
   };
 }
