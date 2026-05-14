@@ -23,4 +23,6 @@
     };
   };
   system.stateVersion = "25.11";
+
+    powerManagement.cpuFreqGovernor = "powersave";
 }
