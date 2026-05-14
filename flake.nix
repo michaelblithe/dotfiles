@@ -43,6 +43,10 @@
     ags = {
       url = "github:aylur/ags";
     };
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
@@ -58,6 +62,7 @@
       sops-nix,
       llama-cpp,
       nixos-hardware,
+      nix-darwin,
       ...
     }:
 
@@ -175,5 +180,21 @@
           specialArgs = { inherit self inputs; };
         };
       };
+      darwinConfigurations."macbook" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.sharedModules = [
+              sops-nix.homeManagerModules.sops
+            ];
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          }
+          ./hosts/macbook
+        ];
+        specialArgs = { inherit inputs self; };
+      };
     };
+
 }
