@@ -29,15 +29,14 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      home-manager,
-      disko,
-      nix-vscode-extensions,
-      nur,
-      sops-nix,
-      ...
+    inputs@{ self
+    , nixpkgs
+    , home-manager
+    , disko
+    , nix-vscode-extensions
+    , nur
+    , sops-nix
+    , ...
     }:
 
     let
@@ -84,6 +83,9 @@
             configuration
             home-manager.nixosModules.home-manager
             {
+              home-manager.sharedModules = [
+                sops-nix.homeManagerModules.sops
+              ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.alex = import ./home/alex;
@@ -111,6 +113,25 @@
               };
             }
             ./hosts/desktop
+          ];
+          specialArgs = { inherit self inputs; };
+        };
+        luna = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            disko.nixosModules.disko
+            sops-nix.nixosModules.sops
+            configuration
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.alex = import ./home/alex;
+              home-manager.extraSpecialArgs = {
+                hostname = "luna";
+              };
+            }
+            ./hosts/luna
           ];
           specialArgs = { inherit self inputs; };
         };
