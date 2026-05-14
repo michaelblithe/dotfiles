@@ -33,7 +33,6 @@
 
     nixos-hardware = {
       url = "github:nixos/nixos-hardware/master";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     astal = {
@@ -196,22 +195,22 @@
         ];
         specialArgs = { inherit inputs self; };
       };
-    };
 
-    devShells = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-      {
-        default = pkgs.mkShell {
-          packages = with pkgs; [
-            nil
-            nixpkgs-fmt
-            statix
-            deadnix
-          ];
-        };
-      }
-    );
+      devShells = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              nil
+              nixpkgs-fmt
+              statix
+              deadnix
+            ];
+          };
+        }
+      );
+    };
 
 }
