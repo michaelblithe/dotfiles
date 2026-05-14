@@ -16,6 +16,8 @@
     shellAliases = {
       claude-qwen-35 = "ANTHROPIC_BASE_URL=http://house-of-wind:8001 claude --model bartowski/Qwen_Qwen3.5-35B-A3B-GGUF:Q8_0";
       claude-qwen-27 = "ANTHROPIC_BASE_URL=http://house-of-wind:8001 claude --model unsloth/Qwen3.5-27B-GGUF:UD-Q4_K_XL";
+      claude-cascade = "ANTHROPIC_BASE_URL=http://house-of-wind:8001 claude --model mradermacher/Nemotron-Cascade-2-30B-A3B-GGUF:Q8_0";
+      claude-cascade-fast = "ANTHROPIC_BASE_URL=http://house-of-wind:8001 claude --model Cascade-2-30B-A3B ";
       t = "$EDITOR ~/sync/everything/Life/Todo.md";
       nt = "$EDITOR ~/sync/everything/Life/$(date %m-%d-+%Y).md";
     }
