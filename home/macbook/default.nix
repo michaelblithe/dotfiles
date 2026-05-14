@@ -11,6 +11,7 @@
     # ../vscode
     ../opencode
     # ../claude-code
+    ../helix
     ../zathura
     ../tmux
     catppuccin.homeModules.catppuccin
