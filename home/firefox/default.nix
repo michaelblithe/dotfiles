@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  catppuccin.firefox = {
+    enable = true;
+    flavor = "mocha";
+  };
   programs.firefox = {
     enable = true;
     
@@ -9,9 +13,14 @@
       isDefault = true;
       
       # Install extensions
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        ublock-origin
-      ];
+      extensions = {
+        force = true;
+        packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          darkreader
+          firefox-color
+        ];
+      };
       
       # Firefox settings
       settings = {

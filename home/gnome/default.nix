@@ -9,24 +9,24 @@
   ];
 
   # Catppuccin Mocha GTK theme
-  gtk = {
-    enable = true;
-    theme = {
-      name = "catppuccin-mocha-blue-standard";
-      package = pkgs.catppuccin-gtk.override {
-        variant = "mocha";
-        accents = [ "blue" ];
-        size = "standard";
-      };
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "mocha";
-        accent = "blue";
-      };
-    };
-  };
+  # gtk = {
+  #   enable = true;
+  #   theme = {
+  #     name = "catppuccin-mocha-blue-standard";
+  #     package = pkgs.catppuccin-gtk.override {
+  #       variant = "mocha";
+  #       accents = [ "blue" ];
+  #       size = "standard";
+  #     };
+  #   };
+  #   iconTheme = {
+  #     name = "Papirus-Dark";
+  #     package = pkgs.catppuccin-papirus-folders.override {
+  #       flavor = "mocha";
+  #       accent = "blue";
+  #     };
+  #   };
+  # };
 
   # Catppuccin Mocha cursors
   home.pointerCursor = {

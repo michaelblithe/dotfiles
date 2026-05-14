@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, catppuccin, ... }:
 
 {
   home.sessionVariables = {
@@ -24,5 +24,6 @@
     ../calibre  # disabled: broken build in current nixpkgs (qmake missing)
     ../opencode
     ../claude-code
+    catppuccin.homeModules.catppuccin
   ];
 }
