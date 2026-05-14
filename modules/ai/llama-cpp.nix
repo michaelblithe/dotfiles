@@ -87,15 +87,16 @@ in
         RestartSec = "5s";
         PrivateTmp = true;
         ProtectSystem = "strict";
-        ProtectHome = true;
+        ProtectHome = "read-only";
         NoNewPrivileges = true;
         ReadWritePaths = [ "/var/lib/llama-server" ];
+        ReadOnlyPaths = [ "/home/alex/.cache/huggingface" ];
       };
 
       script = ''
         # export LLAMA_ARG_API_KEY=$(cat ${config.sops.secrets.llama-cpp.path})
         export LLAMA_CACHE=/var/lib/llama-server
-        export HF_HOME=/var/lib/llama-server
+        export HF_HOME=/home/alex/.cache/huggingface
         export HF_TOKEN=$(cat ${config.sops.secrets.hf.path})
         exec ${cfg.package}/bin/llama-server \
           --host ${cfg.host} \
