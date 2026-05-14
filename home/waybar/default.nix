@@ -5,6 +5,17 @@
   ...
 }:
 
+let
+  vpnScript = pkgs.writeShellScript "waybar-vpn" ''
+    status=$(protonvpn-cli s 2>/dev/null)
+    if echo "$status" | grep -q "Connected"; then
+      server=$(echo "$status" | grep "Server:" | awk '{print $2}')
+      echo '{"text":"󰌾","tooltip":"VPN: '"$server"'","class":"connected"}'
+    else
+      echo '{"text":"󰦞","tooltip":"VPN: Disconnected","class":"disconnected"}'
+    fi
+  '';
+in
 {
   catppuccin.waybar = {
     enable = true;
@@ -20,9 +31,11 @@
         layer = "top";
         height = 34;
         position = "top";
+        spacing = 8;
 
         modules-left = [
           "hyprland/workspaces"
+          "hyprland/window"
         ];
 
         modules-center = [
@@ -30,13 +43,13 @@
         ];
 
         modules-right = [
-          "battery"
-          "pulseaudio"
           "network"
+          "custom/vpn"
+          "pulseaudio"
           "idle_inhibitor"
+          "battery"
         ];
 
-        # Module configurations
         "hyprland/workspaces" = {
           on-click = "activate";
           format = "{name}";
@@ -44,42 +57,53 @@
 
         "hyprland/window" = {
           separate-outputs = true;
-          max-length = 80;
-        };
-
-        pulseaudio = {
-          format = "{volume}% 🔊";
-          format-muted = "muted 🔇";
-          scroll-step = 5;
-          on-click = "pavucontrol";
+          max-length = 50;
         };
 
         network = {
-          format-wifi = "{essid}";
-          format-ethernet = " {ifname}";
-          format-disconnected = "disconnected";
-
-          tooltip = false;
+          format-wifi = "󰤨";
+          format-ethernet = "󰈀";
+          format-disconnected = "󰤭";
+          tooltip = true;
+          tooltip-format-wifi = "{essid} ({signalStrength}%)";
+          tooltip-format-ethernet = "{ifname}";
+          tooltip-format-disconnected = "Disconnected";
         };
 
-        battery = {
-          format = "{icon} {percent}%";
-          format-discharging = "{icon} {percent}%";
-          format-charging = "{icon} {percent}%";
-          format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
-          ];
+        "custom/vpn" = {
+          exec = "${vpnScript}";
+          return-type = "json";
+          interval = 10;
+          format = "{}";
+        };
+
+        pulseaudio = {
+          format = "{icon} {volume}%";
+          format-muted = "󰝟 muted";
+          format-icons = {
+            default = [ "󰕿" "󰖀" "󰕾" ];
+          };
+          scroll-step = 5;
+          on-click = "pamixer -t";
         };
 
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = "";
+            activated = "";
             deactivated = "󰾪";
+          };
+          tooltip-format-activated = "Caffeine on";
+          tooltip-format-deactivated = "Caffeine off";
+        };
+
+        battery = {
+          format = "{icon} {capacity}%";
+          format-charging = "󰂄 {capacity}%";
+          format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          states = {
+            warning = 20;
+            critical = 10;
           };
         };
 
@@ -89,41 +113,94 @@
           format = "{:%a %b %d %I:%M%p}";
           on-click = "hyprctl dispatch exec [float] 'gnome-calendar'";
           tooltip = true;
-          tooltip-format = "{:%a %b %d %I:%M%p}";
+          tooltip-format = "{:%A, %B %d %Y}";
         };
       };
     };
 
-    # style = ''
-    #   * {
+    style = ''
+      * {
+        font-family: JetBrainsMono Nerd Font, monospace;
+        font-size: 13px;
+        min-height: 0;
+      }
 
-    #     font-family: Pixel Operator Mono, JetBrainsMono Nerd Font, monospace;
-    #     font-size: 14pt;
-    #     color: #ffffff;
-    #   }
+      window#waybar {
+        background: alpha(@base, 0.9);
+        border-bottom: 1px solid @surface0;
+        color: @text;
+      }
 
-    #   window#waybar {
-    #     background: rgba(25,25,25,0.9);
-    #     border-bottom: 1px solid rgba(255,255,255,0.08);
-    #   }
+      #workspaces {
+        margin-left: 8px;
+      }
 
-    #   /* Workspaces */
-    #   #workspaces {
-    #     padding-left: 8px;
-    #   }
-    #   #workspaces button {
-    #     padding: 0 8px;
-    #     border-radius: 6px;
-    #   }
-    #   #workspaces button.active {
-    #     background: rgba(255,255,255,0.12);
-    #     box-shadow: inset 0 -2px 0 0 rgba(255,255,255,0.6);
-    #   }
+      #workspaces button {
+        padding: 0 8px;
+        color: @subtext0;
+        border-radius: 6px;
+        margin: 4px 2px;
+      }
 
-    #   #clock, #network, #pulseaudio, #idle_inhibitor {
-    #     padding: 0 15px;
-    #   }
+      #workspaces button.active {
+        background: @surface0;
+        color: @blue;
+      }
 
-    # '';
+      #workspaces button:hover {
+        background: @surface1;
+        color: @text;
+      }
+
+      #window {
+        color: @subtext1;
+        padding: 0 8px;
+      }
+
+      #clock,
+      #battery,
+      #pulseaudio,
+      #network,
+      #custom-vpn,
+      #idle_inhibitor {
+        padding: 0 12px;
+        margin: 4px 2px;
+        border-radius: 8px;
+        background: @surface0;
+        color: @text;
+      }
+
+      #battery.warning {
+        color: @yellow;
+      }
+
+      #battery.critical {
+        color: @red;
+      }
+
+      #battery.charging {
+        color: @green;
+      }
+
+      #network.disconnected {
+        color: @overlay0;
+      }
+
+      #custom-vpn.connected {
+        color: @green;
+      }
+
+      #custom-vpn.disconnected {
+        color: @overlay0;
+      }
+
+      #pulseaudio.muted {
+        color: @overlay0;
+      }
+
+      #idle_inhibitor.activated {
+        color: @peach;
+      }
+    '';
   };
 }
