@@ -19,21 +19,7 @@
     // Make clicks switch to the workspace
     "on-click": "activate",
     // Keep it text, no icons or swap-icon-label nonsense
-    "format": "{name}",
-    // If you want fixed workspace numbers per monitor, list them here:
-    "persistent-workspaces": {
-      "DP-7": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "DP-4": [
-        6,
-        7
-      ]
-    }
+    "format": "{name}"
   },
   "hyprland/window": {
     // Show the active window title per monitor
