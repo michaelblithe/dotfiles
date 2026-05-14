@@ -32,6 +32,34 @@
 -- }
 
 return {
+  -- Direnv integration - auto-load .envrc environments
+  {
+    "direnv/direnv.vim",
+    lazy = false,
+  },
+  -- Disable Mason auto-install since Nix provides our tools
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {},
+    },
+  },
+  -- Configure LSPs provided by Nix
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        nil_ls = {},
+      },
+    },
+  },
+  -- Override LazyVim's default colorscheme
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+    },
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",

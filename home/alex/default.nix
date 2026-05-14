@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  home.sessionVariables = {
+    # COMPOSE_DOCKER_CLI_BUILD = "1";
+    # DOCKER_BUILDKIT = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+  };
   imports = [
     ../vscode
     ../gnome
@@ -8,6 +13,7 @@
     ../firefox
     ../git
     ../kitty
+    ../nvim
     ../hyprland
     ../fonts
     ../rofi
@@ -16,5 +22,7 @@
     ../syncthing
     ../chrome
     ../direnv
+    ../discord
+    ../calibre
   ];
 }

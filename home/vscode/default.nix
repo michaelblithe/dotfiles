@@ -39,6 +39,7 @@
         "redhat.telemetry.enabled" = false;
         "containers.containerClient" = "com.microsoft.visualstudio.containers.podman";
         "containers.orchestratorClient" = "com.microsoft.visualstudio.orchestrators.podmancompose";
+        #"remote.containers.dockerPath" = pkgs.podman + "/bin/podman";
         "editor.fontFamily" = "'Droid Sans Mono', 'monospace', monospace";
         "git.autofetch" = true;
         "github.copilot.enable" = {

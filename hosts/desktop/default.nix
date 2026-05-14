@@ -17,7 +17,8 @@
 
   # Make GPU have enough VRAM
   boot.kernelParams = [
-    "amd_iommu=off"
+    "amd_iommu=on"
+    "iommu=pt"
     "amdgpu.gttsize=126976"
     "ttm.pages_limit=32505856"
   ];
@@ -28,6 +29,7 @@
   # NVIDIA proprietary drivers
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics.enable = true;
+  virtualisation.podman.enableNvidia = true;
 
   hardware.nvidia = {
     # Modesetting is required
