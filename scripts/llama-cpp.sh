@@ -22,7 +22,7 @@ claude-local() {
   local sonnet_model={$2:-$opus_model}
   local haiku_model={$3:-$sonnet_model}
   local code_subagent_model={$4:-$haiku_model}
-  export ANTHROPIC_BASE_URL=http://house-of-wind:8001
+  export ANTHROPIC_BASE_URL=$LLAMA_CPP_URL
   export ANTHROPIC_MODEL=$sonnet_model
   export ANTHROPIC_DEFAULT_OPUS_MODEL=$opus_model
   export ANTHROPIC_DEFAULT_SONNET_MODEL=$sonnet_model
