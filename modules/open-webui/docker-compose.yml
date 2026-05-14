@@ -1,4 +1,3 @@
-#docker run -d -p 3000:8080 -e OPENAI_API_KEY=your_secret_key -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 services:
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
@@ -6,9 +5,38 @@ services:
     ports:
       - "3000:8080"
     environment:
-      - OPENAI_API_KEY=your_secret_key
+      - OPENAI_API_BASE_URL=http://host.docker.internal:8081/v1
+      - OPENAI_API_KEY=not-needed
+      - WEBUI_AUTH=false
+      - TOOL_SERVER_CONNECTIONS=[{"url":"http://mcpo:8000","path":"/brave-search","auth_type":"bearer","key":"","config":{"enable":true},"info":{"name":"Brave Search","description":"Web search via Brave"}}]
+      - OPEN_TERMINAL_CONNECTIONS=[{"url":"http://open-terminal:8000","auth_type":"bearer","key":"your-secret-key","config":{"enable":true},"info":{"name":"Terminal","description":"Shell access"}}]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - open-webui:/app/backend/data
+    depends_on:
+      - mcpo
+      - open-terminal
+
+  mcpo:
+    image: ghcr.io/open-webui/mcpo:main
+    container_name: mcpo
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./mcpo-config.json:/app/config/config.json
+    command: mcpo --config /app/config/config.json
+
+  open-terminal:
+    image: ghcr.io/open-webui/open-terminal
+    container_name: open-terminal
+    ports:
+      - "3001:8000"
+    environment:
+      - OPEN_TERMINAL_API_KEY=your-secret-key
+    volumes:
+      - open-terminal:/home/user
 
 volumes:
   open-webui:
+  open-terminal:

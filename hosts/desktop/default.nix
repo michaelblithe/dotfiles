@@ -6,6 +6,7 @@
     ../common
     ./disko.nix
     ../../modules/ai/llama-cpp.nix
+    ../../modules/containerization
     ../../modules/desktop
     ../../modules/openssh
     ../../modules/tailscale
@@ -64,6 +65,9 @@
     rocmPackages.clr
     llama-cpp
   ];
+
+  # Allow Open WebUI (port 3000) on Tailscale only
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 3000 ];
 
   services.openssh.enable = true;
 

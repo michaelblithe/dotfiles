@@ -6,6 +6,7 @@
     ../common
     ./disko.nix
     ../../modules/ai/llama-cpp.nix
+    ../../modules/containerization
     ../../modules/desktop
     ../../modules/tailscale
   ];
