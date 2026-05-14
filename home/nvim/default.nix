@@ -46,13 +46,10 @@
   };
 
   # Copy nvim configuration files to ~/.config/nvim
-  # We use individual file copies to allow lazy.nvim to manage its lock file
+  # vim.pack manages plugins at runtime under ~/.local/share/nvim/site/pack
   xdg.configFile = {
     "nvim/init.lua".source = ../../nvim/init.lua;
-    "nvim/stylua.toml".source = ../../nvim/stylua.toml;
-    "nvim/lazyvim.json".source = ../../nvim/lazyvim.json;
     "nvim/lua".source = ../../nvim/lua;
-    # Don't copy lazy-lock.json - let lazy.nvim manage it at runtime
   };
 
   # Ensure the nvim data directory exists for lazy.nvim
