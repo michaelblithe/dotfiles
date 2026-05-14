@@ -48,5 +48,6 @@
   environment.systemPackages = with pkgs; [
     cudaPackages.cudatoolkit
     cudaPackages.cudnn
+    llama-cpp
   ];
 }
