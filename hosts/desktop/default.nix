@@ -1,10 +1,11 @@
-{ pkgs, config, ...}:
+{ pkgs, config, lib, ...}:
 
 {
   networking.hostName = "house-of-wind";
   imports = [
     ../common
     ./disko.nix
+    ../../modules/ai
   ];
   
   hardware.enableRedistributableFirmware = true;
@@ -16,6 +17,8 @@
   system.stateVersion = "25.11";
 
   # Make GPU have enough VRAM
+  boot.initrd.kernelModules = [ "thunderbolt" ];
+
   boot.kernelParams = [
     "amd_iommu=on"
     "iommu=pt"
@@ -26,8 +29,12 @@
   # Set CPU governor to performance
   powerManagement.cpuFreqGovernor = "performance";
 
-  # NVIDIA proprietary drivers
+  # GPU drivers
   services.xserver.videoDrivers = [ "nvidia" ];
+
+  # ROCm support for AMD GPU
+  # hardware.amdgpu.opencl.enable = true;
+  # hardware.amdgpu.initrd.enable = true;
   hardware.graphics.enable = true;
   virtualisation.podman.enableNvidia = true;
 
@@ -46,10 +53,20 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # CUDA support
+  # CUDA + ROCm support
   environment.systemPackages = with pkgs; [
     cudaPackages.cudatoolkit
     cudaPackages.cudnn
+    rocmPackages.rocm-smi
+    rocmPackages.clr
     llama-cpp
   ];
+
+  services.openssh.enable = true;
+
+  services.ai-llama-server = {
+    enable = true;
+    modelPresetFile = ../../modules/ai/model-files/desktop.ini;
+  };
+
 }

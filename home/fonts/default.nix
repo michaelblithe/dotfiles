@@ -7,11 +7,12 @@
     (pkgs.stdenvNoCC.mkDerivation {
       name = "pixel-operator";
       src = ../../fonts/pixel_operator;
-      
+
       installPhase = ''
         mkdir -p $out/share/fonts/truetype
         cp *.ttf $out/share/fonts/truetype/
       '';
     })
+    pkgs.nerd-fonts.jetbrains-mono
   ];
 }

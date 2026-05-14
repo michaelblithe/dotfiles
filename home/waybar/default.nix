@@ -43,19 +43,26 @@
         };
 
         network = {
-          format-wifi = "{essid} {signalStrength}%";
+          format-wifi = "{essid}";
           format-ethernet = " {ifname}";
           format-disconnected = "disconnected";
+
           tooltip = false;
         };
 
         battery = {
-          format = "{capacity}% ({time}) 🔋";
-          format-charging = "⚡ {capacity}% ({time})";
-          format-discharging = "🔋 {capacity}% ({time})";
+          format = "{icon} {time}";
+          format-discharging = "{icon} {time}";
+          format-charging = "{icon} {time}";
+          format-icons = ["" "" "" "" ""];
         };
+
         idle_inhibitor = {
-          format = "{status}";
+          format = "{icon}";
+          format-icons = {
+            activated = "";
+            deactivated = "󰾪";
+          };
         };
 
         clock = {
@@ -72,7 +79,7 @@
     style = ''
       * {
 
-        font-family: Pixel Operator Mono, JetBrainsMono, monospace;
+        font-family: Pixel Operator Mono, JetBrainsMono Nerd Font, monospace;
         font-size: 14pt;
         color: #ffffff;
       }
@@ -96,8 +103,8 @@
         box-shadow: inset 0 -2px 0 0 rgba(255,255,255,0.6);
       }
 
-      #clock, #network, #pulseaudio {
-        padding: 0 10px;
+      #clock, #network, #pulseaudio, #idle_inhibitor {
+        padding: 0 15px;
       }
 
     '';

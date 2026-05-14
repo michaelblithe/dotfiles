@@ -2,10 +2,10 @@
   description = "Alex's dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
@@ -28,24 +28,38 @@
     };
 
     llama-cpp = {
-      url = "github:ggml-org/llama.cpp/0c3b7a9efebc73d206421c99b7eb6b6716231322";
+      url = "github:ggml-org/llama.cpp/238856ec8fb79b7968e43f1e612af6ab2e3cfe9a";
+    };
+
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    astal = {
+      url = "github:aylur/astal";
+    };
+
+    ags = {
+      url = "github:aylur/ags";
     };
 
   };
 
   outputs =
-    inputs@{ self
-    , nixpkgs
-    , nixpkgs-unstable
-    , home-manager
-    , disko
-    , nix-vscode-extensions
-    , nur
-    , sops-nix
-    , llama-cpp
-    , ...
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      disko,
+      nix-vscode-extensions,
+      nur,
+      sops-nix,
+      llama-cpp,
+      nixos-hardware,
+      ...
     }:
-
 
     let
       configuration =
@@ -79,6 +93,7 @@
               };
             }
             ./hosts/thinkpad
+            nixos-hardware.nixosModules.lenovo-thinkpad-x230
           ];
           specialArgs = { inherit self inputs; };
         };
@@ -100,7 +115,12 @@
                 hostname = "framework";
               };
             }
+            {
+              nixpkgs.config.allowUnfree = true;
+              nixpkgs.overlays = [ (import ./overlays/llama.cpp-vulkan.nix llama-cpp) ];
+            }
             ./hosts/framework
+            nixos-hardware.nixosModules.framework-13th-gen-intel
           ];
           specialArgs = { inherit self inputs; };
         };
@@ -124,10 +144,11 @@
             }
             {
               nixpkgs.config.allowUnfree = true;
-              nixpkgs.overlays = [ (import ./overlays/llama.cpp.nix llama-cpp) ];
+              nixpkgs.overlays = [ (import ./overlays/llama.cpp-full.nix llama-cpp) ];
             }
             ./hosts/desktop
             ./modules/openssh
+            nixos-hardware.nixosModules.framework-desktop-amd-ai-max-300-series
           ];
           specialArgs = { inherit self inputs; };
         };

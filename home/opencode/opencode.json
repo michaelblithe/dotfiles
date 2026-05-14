@@ -1,0 +1,52 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "llama.cpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "llama-server (local)",
+      "options": {
+        "baseURL": "http://127.0.0.1:8001/v1"
+      },
+      "models": {
+        "unsloth/Qwen3-Coder-Next-GGUF:MXFP4_MOE": {
+          "name": "Qwen3-Coder Next",
+          "limit": {
+            "context": 200000,
+            "output": 65536
+          }
+        },
+        "unsloth/gpt-oss-120b-GGUF:Q4_K_M": {
+          "name": "GPT OSS 120B",
+          "limit": {
+            "context": 128000,
+            "output": 65536
+          }
+        },
+        "noctrex/GLM-4.7-Flash-MXFP4_MOE-GGUF:MXFP4_MOE": {
+          "name": "GLM-4.7-Flash",
+          "limit": {
+            "context": 128000,
+            "output": 65536
+          }
+        },
+        "unsloth/MiniMax-M2.5-GGUF:Q3_K_XL": {
+          "name": "MiniMax-M2.5",
+          "limit": {
+            "context": 64000,
+            "output": 65536
+          }
+        },
+      }
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "gh_grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app"
+    }
+  },
+}
