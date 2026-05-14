@@ -127,6 +127,7 @@
               nixpkgs.overlays = [ (import ./overlays/llama.cpp.nix llama-cpp) ];
             }
             ./hosts/desktop
+            ./modules/openssh
           ];
           specialArgs = { inherit self inputs; };
         };
