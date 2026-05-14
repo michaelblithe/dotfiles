@@ -29,4 +29,5 @@ claude-local() {
   export ANTHROPIC_DEFAULT_HAIKU_MODEL=$haiku_model
   export CLAUDE_CODE_SUBAGENT_MODEL=$code_subagent_model
   export ENABLE_TOOL_SEARCH=false
+  claude 
 }
