@@ -24,6 +24,8 @@
     ../calibre  # disabled: broken build in current nixpkgs (qmake missing)
     ../opencode
     ../claude-code
+    ../spotify
+    ../lmstudio
     catppuccin.homeModules.catppuccin
   ];
 }
