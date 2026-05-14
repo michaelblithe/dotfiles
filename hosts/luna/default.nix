@@ -47,9 +47,9 @@
 
   # Disable sleep/suspend entirely — screen off is fine
   services.logind = {
-    lidSwitch = "lock";
-    lidSwitchDocked = "lock";
-    lidSwitchExternalPower = "lock";
+    lidSwitch = lib.mkForce "lock";
+    lidSwitchDocked = lib.mkForce "lock";
+    lidSwitchExternalPower = lib.mkForce "lock";
   };
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
