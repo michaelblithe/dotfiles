@@ -1,4 +1,9 @@
-{ config, pkgs, catppuccin, ... }:
+{
+  config,
+  pkgs,
+  catppuccin,
+  ...
+}:
 
 {
   home.sessionVariables = {
@@ -21,9 +26,9 @@
     ../chrome
     ../direnv
     ../discord
-    ../calibre  
+    ../calibre
     ../opencode
-    # ../claude-code
+    ../claude-code
     ../zathura
     ../tmux
     ../spotify
