@@ -22,8 +22,7 @@
 
   # Make GPU have enough VRAM
   boot.initrd.kernelModules = [ "thunderbolt" ];
-
-  boot.kernelParams = [
+boot.kernelParams = [
     "amd_iommu=on"
     "iommu=pt"
     "amdgpu.gttsize=126976"

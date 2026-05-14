@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   nix.settings.experimental-features = [
@@ -31,10 +31,12 @@
 
   imports = [
     ../../modules/firejail
+    ../../modules/wireguard
   ];
 
-  environment.systemPackages =
-    (with pkgs; [
+  environment.systemPackages = (
+    with pkgs;
+    [
       git
       wget
       curl
@@ -51,6 +53,9 @@
       lazydocker
       lftp
       unzip
+      jq
+      httpie
       python3
-    ]);
+    ]
+  );
 }

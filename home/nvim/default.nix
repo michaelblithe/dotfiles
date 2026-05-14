@@ -23,7 +23,7 @@
 
       # Formatters
       stylua
-      nixpkgs-fmt
+      nixfmt
       isort
 
       # Tools for telescope and other plugins
