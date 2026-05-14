@@ -1,6 +1,18 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  catppuccin,
+  ...
+}:
 
 {
+  catppuccin.waybar = {
+    enable = true;
+    flavor = "mocha";
+    accent = "blue";
+    mode = "prependImport";
+  };
+
   programs.waybar = {
     enable = true;
     settings = {
@@ -54,7 +66,13 @@
           format = "{icon} {time}";
           format-discharging = "{icon} {time}";
           format-charging = "{icon} {time}";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
 
         idle_inhibitor = {
@@ -76,37 +94,36 @@
       };
     };
 
-    style = ''
-      * {
+    # style = ''
+    #   * {
 
-        font-family: Pixel Operator Mono, JetBrainsMono Nerd Font, monospace;
-        font-size: 14pt;
-        color: #ffffff;
-      }
+    #     font-family: Pixel Operator Mono, JetBrainsMono Nerd Font, monospace;
+    #     font-size: 14pt;
+    #     color: #ffffff;
+    #   }
 
-      window#waybar {
-        background: rgba(25,25,25,0.9);
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-      }
+    #   window#waybar {
+    #     background: rgba(25,25,25,0.9);
+    #     border-bottom: 1px solid rgba(255,255,255,0.08);
+    #   }
 
+    #   /* Workspaces */
+    #   #workspaces {
+    #     padding-left: 8px;
+    #   }
+    #   #workspaces button {
+    #     padding: 0 8px;
+    #     border-radius: 6px;
+    #   }
+    #   #workspaces button.active {
+    #     background: rgba(255,255,255,0.12);
+    #     box-shadow: inset 0 -2px 0 0 rgba(255,255,255,0.6);
+    #   }
 
-      /* Workspaces */
-      #workspaces {
-        padding-left: 8px;
-      }
-      #workspaces button {
-        padding: 0 8px;
-        border-radius: 6px;
-      }
-      #workspaces button.active {
-        background: rgba(255,255,255,0.12);
-        box-shadow: inset 0 -2px 0 0 rgba(255,255,255,0.6);
-      }
+    #   #clock, #network, #pulseaudio, #idle_inhibitor {
+    #     padding: 0 15px;
+    #   }
 
-      #clock, #network, #pulseaudio, #idle_inhibitor {
-        padding: 0 15px;
-      }
-
-    '';
+    # '';
   };
 }
