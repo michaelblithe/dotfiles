@@ -45,6 +45,17 @@
   home-manager.users.alex.home.stateVersion = "25.11";
   system.stateVersion = "25.11";
 
+  # Disable sleep/suspend entirely — screen off is fine
+  services.logind = {
+    lidSwitch = "lock";
+    lidSwitchDocked = "lock";
+    lidSwitchExternalPower = "lock";
+  };
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
   environment.systemPackages = with pkgs; [
     kitty.terminfo
   ];
