@@ -62,6 +62,7 @@
       httpie
       python3
       xq
+      ncdu
     ]
   );
 }
