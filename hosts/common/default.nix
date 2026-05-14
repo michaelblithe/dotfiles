@@ -27,7 +27,6 @@
 
   programs.hyprland = {
     enable = true;
-    # If using the flake version as you did in HM:
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };

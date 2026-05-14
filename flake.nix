@@ -61,6 +61,21 @@
         ];
         specialArgs = { inherit self inputs; };
       };
+      desktop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          configuration
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.alex = import ./home/alex;
+            home-manager.extraSpecialArgs = { hostname = "house-of-wind"; };
+          }
+          ./hosts/desktop
+        ];
+        specialArgs = { inherit self inputs; };
+      };
     };
   };
 }
