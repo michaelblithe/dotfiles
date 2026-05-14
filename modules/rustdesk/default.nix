@@ -2,6 +2,7 @@
   services.rustdesk-server = {
     enable = true;
     openFirewall = false;
+    signal.relayHosts = [ "127.0.0.1" ];
   };
 
   networking.firewall.interfaces."tailscale0" = {
