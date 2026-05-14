@@ -8,8 +8,8 @@
         "baseURL": "http://house-of-wind:8001/v1"
       },
       "models": {
-        "unsloth/Qwen3.5-27B-GGUF:UD-Q4_K_XL": {
-          "name": "Qwen3.5-27B",
+        "Qwen3.6-27B": {
+          "name": "Qwen3.6-27B",
           "limit": {
             "context": 150000,
             "output": 65536
@@ -29,15 +29,15 @@
             "output": 65536
           }
         },
-        "bartowski/Qwen_Qwen3.5-35B-A3B-GGUF:Q8_0": {
-          "name": "Qwen3.5-35B-A3B",
+        "Qwen3.6-35B-A3B": {
+          "name": "Qwen3.6-35B-A3B",
           "limit": {
             "context": 256000,
             "output": 65536
           }
         },
-        "unsloth/Qwen3-Coder-Next-GGUF:MXFP4_MOE": {
-          "name": "Qwen3-Coder-Next",
+        "Qwen-Coder-Next": {
+          "name": "Qwen-Coder-Next",
           "limit": {
             "context": 256000,
             "output": 65536
