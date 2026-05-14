@@ -8,6 +8,7 @@
     ../../modules/openssh
   ];
 
+  boot.initrd.availableKernelModules = [ "usb_storage" "uas" "sd_mod" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
