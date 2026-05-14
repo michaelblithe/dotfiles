@@ -3,5 +3,9 @@
 {
   imports = [ 
     ../vscode
+    ../gnome
+    ../zsh
+    ../firefox
+    ../git
   ];
 }

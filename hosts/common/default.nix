@@ -11,13 +11,16 @@
   users.users.alex = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager"];
+    shell = pkgs.zsh;
     # Use an initial plaintext password for first boot; change it after logging in.
-    password = "changeme";
+    initialPassword = "changeme";
   };
 
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
+
+  programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
@@ -30,6 +33,7 @@
     podman
     vscode
     neovim
+    gh
   ];
 
 }
