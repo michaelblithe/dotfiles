@@ -15,5 +15,6 @@
     ../emu
     ../syncthing
     ../chrome
+    ../direnv
   ];
 }

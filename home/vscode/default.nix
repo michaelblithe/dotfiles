@@ -13,7 +13,7 @@
         ms-azuretools.vscode-containers
         ms-vscode-remote.remote-containers
         openai.chatgpt
-        # rooveterinaryinc.roo-cline
+        rooveterinaryinc.roo-cline
         saoudrizwan.claude-dev
         jnoortheen.nix-ide
         vscodevim.vim
