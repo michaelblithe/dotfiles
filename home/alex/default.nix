@@ -11,5 +11,6 @@
     ../hyprland
     ../fonts
     ../rofi
+    ../waybar
   ];
 }

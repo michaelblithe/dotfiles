@@ -28,6 +28,7 @@
         "redhat.telemetry.enabled" = false;
         "containers.containerClient" = "com.microsoft.visualstudio.containers.podman";
         "containers.orchestratorClient" = "com.microsoft.visualstudio.orchestrators.podmancompose";
+        "editor.fontFamily" = "'Droid Sans Mono', 'monospace', monospace";
         "git.autofetch" = true;
         "github.copilot.enable" = {
           "*" = true;

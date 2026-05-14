@@ -19,6 +19,10 @@
         ",preferred,auto,1.33"
       ];
       
+      exec-once = [
+        "waybar"
+      ];
+      
       bind = [
         "$mod, RETURN, exec, kitty"
         "$mod, D, exec, rofi -show drun"
