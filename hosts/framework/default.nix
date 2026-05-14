@@ -7,6 +7,7 @@
     ./disko.nix
     ../../modules/ai/llama-cpp.nix
     ../../modules/desktop
+    ../../modules/tailscale
   ];
 
   # Hardware support

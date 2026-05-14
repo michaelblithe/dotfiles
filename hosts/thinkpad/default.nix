@@ -6,6 +6,7 @@
     ../common
     ./disko.nix
     ../../modules/desktop
+    ../../modules/tailscale
   ];
 
   # Hardware support
