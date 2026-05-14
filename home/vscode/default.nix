@@ -26,7 +26,6 @@
         "workbench.colorTheme" = "Pink Cat Boo";
         "workbench.iconTheme" = "catppuccin-mocha";
         "redhat.telemetry.enabled" = false;
-        "workbench.activityBar.location" = "hidden";
         "containers.containerClient" = "com.microsoft.visualstudio.containers.podman";
         "containers.orchestratorClient" = "com.microsoft.visualstudio.orchestrators.podmancompose";
         "git.autofetch" = true;

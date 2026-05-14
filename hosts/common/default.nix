@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, inputs, ...}:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -22,6 +22,13 @@
 
   programs.zsh.enable = true;
 
+  programs.hyprland = {
+    enable = true;
+    # If using the flake version as you did in HM:
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
   environment.systemPackages = with pkgs; [
     vim
     git
@@ -34,6 +41,8 @@
     vscode
     neovim
     gh
+    nixfmt
+    nil
   ];
 
 }
