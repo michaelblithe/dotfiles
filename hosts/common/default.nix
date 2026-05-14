@@ -69,6 +69,7 @@
       python3
       xq
       ncdu
+      browsh
     ]
   );
 }
