@@ -17,6 +17,7 @@
     shellAliases = {
       claude-gemma = "ANTHROPIC_BASE_URL=http://house-of-wind:8001 claude --model gemma-4-31B-it";
       claude-qwen-27 = "ANTHROPIC_BASE_URL=http://house-of-wind:8001 claude --model unsloth/Qwen3.5-27B-GGUF:UD-Q4_K_XL";
+      claude-minimax = "ANTHROPIC_BASE_URL=http://house-of-wind:8001 claude --model minimax-2.7";
       wake-house-of-wind = "wakeonlan 9c:bf:0d:00:fe:fb";
       t = "$EDITOR ~/sync/everything/Life/Todo.md";
       nt = "$EDITOR ~/sync/everything/Life/$(date %m-%d-+%Y).md";
