@@ -5,10 +5,11 @@ services:
     ports:
       - "3000:8080"
     environment:
-      - OPENAI_API_BASE_URL=http://host.docker.internal:8081/v1
+      - OPENAI_API_BASE_URL=http://host.docker.internal:8001/v1
       - OPENAI_API_KEY=not-needed
       - WEBUI_AUTH=false
-      - TOOL_SERVER_CONNECTIONS=[{"url":"http://mcpo:8000","path":"/brave-search","auth_type":"bearer","key":"","config":{"enable":true},"info":{"name":"Brave Search","description":"Web search via Brave"}}]
+      - ENABLE_OLLAMA_API=false
+      - TOOL_SERVER_CONNECTIONS=[{"url":"http://mcpo:8000","path":"/openapi.json","auth_type":"bearer","key":"","config":{"enable":true},"info":{"name":"Brave Search","description":"Web search via Brave"}}]
       - OPEN_TERMINAL_CONNECTIONS=[{"url":"http://open-terminal:8000","auth_type":"bearer","key":"your-secret-key","config":{"enable":true},"info":{"name":"Terminal","description":"Shell access"}}]
     extra_hosts:
       - "host.docker.internal:host-gateway"
