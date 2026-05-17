@@ -77,10 +77,6 @@
         disable_splash_rendering = true;
         animate_manual_resizes = true;
         animate_mouse_windowdragging = true;
-<<<<<<< HEAD
-        #vfr = true;
-=======
->>>>>>> refs/rewritten/main-30
       };
 
       # Dwindle layout settings

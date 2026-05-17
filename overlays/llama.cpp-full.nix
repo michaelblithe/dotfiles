@@ -5,7 +5,7 @@ llama-cpp-input: final: prev: {
       # Call the llama.cpp package with all GPU backends (for desktop)
       llamaBase = (prev.callPackage "${llama-cpp-input}/.devops/nix/package.nix" {
         useCuda = true;
-        useRocm = true;
+        useRocm = false;
         useVulkan = true;
         llamaVersion = llama-cpp-input.rev or llama-cpp-input.shortRev or "git";
       }).overrideAttrs (old: {
@@ -14,6 +14,9 @@ llama-cpp-input: final: prev: {
         cmakeFlags = old.cmakeFlags or [] ++ [
           (prev.lib.cmakeBool "LLAMA_OPENSSL" true)
           (prev.lib.cmakeBool "GGML_BACKEND_DL" true)
+	  (prev.lib.cmakeBool "LLAMA_USE_PREBUILT_UI" true)
+	  (prev.lib.cmakeBool "LLAMA_BUILD_UI" false)
+	  (prev.lib.cmakeBool "LLAMA_BUILD_WEBUI" false)
         ];
       });
     in

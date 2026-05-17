@@ -1,0 +1,24 @@
+services:
+    llama-cpp:
+        image: ghcr.io/ggml-org/llama.cpp:server-cuda
+        container_name: llama-cpp
+        ports:
+            - "8001:8001"
+        volumes:
+            - /var/models:/var/models:ro
+            - ./model-files/desktop.ini:/var/models.ini:ro
+        environment:
+            - LLAMA_ARG_HOST=0.0.0.0
+            - LLAMA_ARG_PORT=8001
+            - LLAMA_ARG_N_PARALLEL=1
+            - LLAMA_ARG_MODELS_PRESET=/var/models.ini
+        devices:
+            - /dev/dri:/dev/dri
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: cdi
+                          capabilities: [gpu]
+                          device_ids:
+                              - nvidia.com/gpu=all
