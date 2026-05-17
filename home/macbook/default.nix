@@ -12,9 +12,9 @@
     ../opencode
     # ../claude-code
     ../helix
-    ../zathura
+    #../zathura
     ../tmux
-    ../qute-browser
+    #../qute-browser
     ../rmpc
     catppuccin.homeModules.catppuccin
   ];
