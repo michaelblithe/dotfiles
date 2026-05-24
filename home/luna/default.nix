@@ -34,4 +34,8 @@
   dconf.settings."org/gnome/settings-daemon/plugins/power" = {
     sleep-inactive-battery-type = lib.mkForce "nothing";
   };
+
+  services.logind.lidSwitch = "ignore";
+  services.logind.lidSwitchDocked = "ignore";
+
 }
