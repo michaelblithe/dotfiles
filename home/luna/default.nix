@@ -1,4 +1,10 @@
-{ config, pkgs, lib, catppuccin, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  catppuccin,
+  ...
+}:
 
 {
   home.sessionVariables = {
@@ -34,4 +40,5 @@
   dconf.settings."org/gnome/settings-daemon/plugins/power" = {
     sleep-inactive-battery-type = lib.mkForce "nothing";
   };
+ 
 }

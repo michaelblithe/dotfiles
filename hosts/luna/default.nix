@@ -11,10 +11,15 @@
     ../../modules/desktop
   ];
 
-  boot.initrd.availableKernelModules = [ "usb_storage" "uas" "sd_mod" ];
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    initrd.availableKernelModules = [ "usb_storage" "uas" "sd_mod" ];
+    loader.systemd-boot.enable = true;
+    loader.systemd-boot.configurationLimit = 10;
+    loader.efi.canTouchEfiVariables = true;
+    kernelParams = [ "intel_pstate=active" ];
+  };
+
+  powerManagement.cpuFreqGovernor = "performance";
 
   networking.networkmanager.enable = true;
 
