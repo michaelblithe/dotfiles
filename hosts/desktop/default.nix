@@ -73,7 +73,6 @@ boot.kernelParams = [
     cudaPackages.cudnn
     rocmPackages.rocm-smi
     rocmPackages.clr
-    llama-cpp
     rustdesk-flutter
   ];
 
@@ -82,10 +81,10 @@ boot.kernelParams = [
 
   services.openssh.enable = true;
 
-  services.ai-llama-server = {
-    enable = true;
-    host = "0.0.0.0";
-    modelPresetFile = ../../modules/ai/model-files/desktop.ini;
-  };
+  #services.ai-llama-server = {
+  #  enable = true;
+  #  host = "0.0.0.0";
+  #  modelPresetFile = ../../modules/ai/model-files/desktop.ini;
+  #};
 
 }
