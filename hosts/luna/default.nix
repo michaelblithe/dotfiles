@@ -9,6 +9,7 @@
     ../../modules/tailscale
     ../../modules/containerization
     ../../modules/desktop
+    ../../modules/k3s-server
   ];
 
   boot = {
@@ -64,5 +65,7 @@
   environment.systemPackages = with pkgs; [
     kitty.terminfo
   ];
+
+  services.k3s.serverAddr = "https://luna:6443";
 
 }

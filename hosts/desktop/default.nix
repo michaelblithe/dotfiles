@@ -14,7 +14,7 @@
     ../../modules/steam
     ../../modules/rustdesk
   ];
-  
+
   hardware.enableRedistributableFirmware = true;
   hardware.firmware = [ pkgs.linux-firmware ];
   networking.networkmanager.enable = true;
@@ -26,11 +26,11 @@
 
   # Make GPU have enough VRAM
   boot.initrd.kernelModules = [ "thunderbolt" ];
-boot.kernelParams = [
-    "amd_iommu=on"
-    "iommu=pt"
-    "amdgpu.gttsize=126976"
-    "ttm.pages_limit=32505856"
+  boot.kernelParams = [
+      "amd_iommu=on"
+      "iommu=pt"
+      "amdgpu.gttsize=126976"
+      "ttm.pages_limit=32505856"
   ];
 
   # Set CPU governor to performance
